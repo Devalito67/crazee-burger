@@ -1,9 +1,10 @@
 import './App.css'
+import LoginPage from './pages/loginPage/LoginPage'
 
 function App() {
 
   return (
-    <div>App</div>
+    <LoginPage/>
   )
 }
 
