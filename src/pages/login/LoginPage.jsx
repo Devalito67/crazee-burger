@@ -1,7 +1,14 @@
 import LoginForm from "./LoginForm";
+import "./loginPage.css"
 
 export default function LoginPage() {
     return (
-        <LoginForm />
+        <div className="loginPage">
+            <div>
+                
+               <LoginForm />  
+            </div>
+           
+        </div>
     )
 }
