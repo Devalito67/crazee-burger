@@ -1,14 +1,36 @@
+import styled from "styled-components";
+import Logo from "../../components/Logo";
 import LoginForm from "./LoginForm";
-import "./loginPage.css"
 
 export default function LoginPage() {
     return (
-        <div className="loginPage">
+        <LoginPagestyled>
             <div>
-                
-               <LoginForm />  
+                <Logo />
+                <LoginForm />
             </div>
-           
-        </div>
+
+        </LoginPagestyled>
     )
 }
+
+const LoginPagestyled = styled.div `
+display: flex;
+height: 100vh;
+width: 100%;
+position: relative;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+    &::before {
+        content: "";
+        background: url("src/assets/F03 burger-background.jpg") center / cover no-repeat ;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+`
