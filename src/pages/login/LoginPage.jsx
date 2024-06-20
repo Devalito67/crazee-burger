@@ -5,16 +5,13 @@ import LoginForm from "./LoginForm";
 export default function LoginPage() {
     return (
         <LoginPagestyled>
-            <div>
-                <Logo />
-                <LoginForm />
-            </div>
-
+            <Logo />
+            <LoginForm />
         </LoginPagestyled>
     )
 }
 
-const LoginPagestyled = styled.div `
+const LoginPagestyled = styled.div`
 display: flex;
 height: 100vh;
 width: 100%;
