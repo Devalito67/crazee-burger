@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Logo from "../../components/Logo";
+import Logo from "../../components/reusable-ui/Logo";
 import LoginForm from "./LoginForm";
 
 export default function LoginPage() {
@@ -14,7 +14,6 @@ export default function LoginPage() {
 const LoginPagestyled = styled.div`
 display: flex;
 height: 100vh;
-width: 100%;
 position: relative;
 flex-direction: column;
 justify-content: center;
@@ -22,7 +21,8 @@ align-items: center;
 
     &::before {
         content: "";
-        background: url("src/assets/F03 burger-background.jpg") center / cover no-repeat ;
+        background: url("src/assets/F03 burger-background.jpg") center / cover no-repeat rgba(0,0,0,0.7);
+        background-blend-mode: darken;
         position: absolute;
         top: 0;
         bottom: 0;

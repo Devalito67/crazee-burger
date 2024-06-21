@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { IoChevronForward } from "react-icons/io5";
+import TextInput from "../../components/reusable-ui/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
+import PrimaryButton from "../../components/reusable-ui/PrimaryButton";
 
 export default function LoginForm() {
   const [inputValue, setInputValue] = useState("");
@@ -21,10 +24,17 @@ export default function LoginForm() {
       <h1>Bienvenue chez nous !</h1>
       <hr />
       <h2>Connectez-vous</h2>
-      <div className="divInput">
-        <BsPersonCircle /><input value={inputValue} type="text" placeholder="Entrez votre prénom" onChange={handleChange} required />
-      </div>
-      <button type="submit">Accèdez à mon espace</button>
+      <TextInput 
+        Icon={<BsPersonCircle className="icon"/>}
+        value={inputValue}
+        placeholder="Entrez votre prénom"
+        onChange={handleChange}
+        required
+        />
+      <PrimaryButton
+        label="Accéder à mon espace"
+        Icon={<IoChevronForward className="icon"/>}
+        />
     </LoginFormStyled>
   )
 }
@@ -39,9 +49,10 @@ const LoginFormStyled = styled.form`
   padding-right: 32px;
   padding-left: 32px;
   padding-top: 65px;
-  
+  font-family: "Amatic SC", cursive;
+  justify-content: space-between;
+
     h1{
-      font-family: "Amatic SC";
       font-size: 48px;
       font-weight: 700;
       color: white;
@@ -50,45 +61,17 @@ const LoginFormStyled = styled.form`
     hr{
       border: 1px solid orange;
       height: 3px;
-      background-color: orange;
+      background-color: #ffa01b;
       width: 100%;
     };
     h2{
-      font-family: "Amatic SC";
       font-size: 36px;
       font-weight: 700;
       color: white;
       text-transform: uppercase;
       margin-top: 40px;
     };
-    .divInput{
-      display: flex;
-      width: 100%;
-      border-radius: 5px;
-      background-color: white;
-      padding: 18px 24px;
-      gap: 13px;
-      align-items: center;
-    };
-    input{
-      font-family: "Open Sans";
-      width: 100%;
-      font-size: 15px;
-      &::placeholder {
-        color: #D3D3D3;
-      }
-    };
-    button {
-      display: flex;
-      width: 100%;
-      border-radius: 5px;
-      height: 53px;
-      background-color: orange;
-      color: white;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
+    .icon {
+      margin-left: 10px;
     }
-
-
 `

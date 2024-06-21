@@ -11,16 +11,20 @@ export default function Logo() {
 const LogoStyled = styled.div`
     display: flex;
     align-items: center;
+    transform: scale(2.5);
         h1{
-            font-family : "Amatic SC";
-            color : orange;
+            font-family : "Amatic SC", cursive;
+            color : #ffa01b;
             text-transform: uppercase;
             font-weight: 700;
-            font-size: 110px;
+            font-size: 36px;
+            letter-spacing: 1.5px;
+            line-height: 1em;
         };
         img{
-            height: 150px;
-            width: 200px;
+            height: 60px;
+            width: 80px;
+            margin: 0 5px;
         }
 
 `
