@@ -16,6 +16,7 @@ const PrimaryButtonStyled = styled.button`
       justify-content: center;
       font-size: 15px;
       color: white;
+      cursor: pointer;
         &:hover:not(:disabled) {
             background-color: white;
             color: #ffa01b;
