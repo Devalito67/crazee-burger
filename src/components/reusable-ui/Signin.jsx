@@ -21,7 +21,6 @@ export default function Signin() {
 const SigninStyled = styled.div`
     display: flex;
     color: #747B91;
-    font-family: "Open Sans";
     align-items: center;
     gap: 10px;
         .infos {
