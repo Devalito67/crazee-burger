@@ -1,10 +1,8 @@
 import styled from "styled-components"
-import PrimaryButton from "../../components/reusable-ui/PrimaryButton"
-import { formatPrice } from "../../utils/maths"
+import PrimaryButton from "./PrimaryButton"
 
-export default function Card({ imageSource, title, price }) {
-const roundPrice = formatPrice(price)
-console.log(roundPrice)
+export default function Card({ imageSource, title, description }) {
+
     return (
         <CardStyled >
             <div className="picture-card">
@@ -12,8 +10,8 @@ console.log(roundPrice)
             </div>
             <div className="card-infos">
                 <h2>{title}</h2>
-                <div className="yo">
-                    <p>{roundPrice}</p>
+                <div className="card-description">
+                    <p>{description}</p>
                     <PrimaryButton label="Ajouter" />
                 </div>
             </div>
@@ -59,7 +57,7 @@ const CardStyled = styled.div`
                     overflow: hidden;
                 }
         }
-        .yo {
+        .card-description {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -73,6 +71,10 @@ const CardStyled = styled.div`
             button {
                 flex:1;
                 height: 38px;
+                &:active {
+                    color: white;
+                    background-color: #ffa01b;
+                }
             }
         }
 `
