@@ -6,7 +6,7 @@ import { formatPrice } from "../../utils/maths";
 
 export default function Menu() {
     const [ menu, setMenu ] = useState(fakeMenu2)
-    
+
     return (
         <MenuStyled>
             {menu && menu.map(({ id, imageSource, title, price }) => {
@@ -14,7 +14,7 @@ export default function Menu() {
                 key={id}
                 imageSource={imageSource}
                 title={title}
-                description={formatPrice({ price })}
+                description={formatPrice( price )}
             />
 })}
         </MenuStyled>
