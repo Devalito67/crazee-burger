@@ -18,7 +18,6 @@ const TextInputStyled = styled.div `
       gap: 13px;
       align-items: center;
     input{
-      font-family: "Open Sans";
       width: 100%;
       font-size: 15px;
       &::placeholder {

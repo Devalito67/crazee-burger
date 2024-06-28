@@ -21,7 +21,7 @@ align-items: center;
 
     &::before {
         content: "";
-        background: url("/burger-background.jpg") center / cover no-repeat rgba(0,0,0,0.7);
+        background: url("/images/burger-background.jpg") center / cover no-repeat rgba(0,0,0,0.7);
         background-blend-mode: darken;
         position: absolute;
         top: 0;
