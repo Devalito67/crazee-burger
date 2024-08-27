@@ -7,14 +7,16 @@ import { FaUserSecret } from "react-icons/fa"
 import { ToastAdmin } from "./ToastAdmin"
 import { toast } from "react-toastify"
 
-export default function NavbarRightSide() {
+export default function NavbarRightSide({isAdmin, setIsAdmin}) {
   const [isChecked, setIsChecked] = useState(false)
+
 
   const handleToggle = () => {
     if (isChecked === true) {
-      setIsChecked(false)
+      setIsChecked(false);
+      setIsAdmin(false);
     } else if (isChecked === false) {
-      setIsChecked(true)
+      setIsChecked(true);
       toast.info("Mode admin activé", {
         icon: <FaUserSecret size={30} />,
         theme: "dark",
@@ -25,12 +27,13 @@ export default function NavbarRightSide() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      })
+      });
+      setIsAdmin(true);
     }
   }
 
   return (
-    <NavbarRightSideStyled>
+    <NavbarRightSideStyled isAdmin={isAdmin} setIsAdmin={setIsAdmin}>
       < ToggleButton labelIfChecked="FERMER LE MODE ADMIN" labelIfUnchecked="OUVRIR LE MODE ADMIN" isChecked={isChecked} onToggle={handleToggle} />
       <Signin />
       <ToastAdmin />

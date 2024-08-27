@@ -3,6 +3,7 @@ import AdminPanel from "./AdminPanel";
 import AdminTabs from "./AdminTabs";
 
 export default function Admin() {
+
     return <AdminStyled>
         <AdminTabs />
         <AdminPanel />
