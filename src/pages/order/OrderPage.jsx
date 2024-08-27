@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import Navbar from "../../components/reusable-ui/Navbar"
 import Main from "./Main"
+import Admin from "../../components/admin/Admin"
 
 export default function OrderPage() {
   return (
@@ -8,6 +9,7 @@ export default function OrderPage() {
       <div className="container">
         <Navbar />
         <Main />
+        <Admin/>
       </div>
     </OrderPageStyled>
   )
