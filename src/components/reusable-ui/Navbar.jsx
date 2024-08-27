@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import Logo from "./Logo";
-import Signin from "./Signin";
+
+import NavbarRightSide from "../NavbarRightSide";
 
 export default function Navbar() {
   return (
     <NavbarStyled>
       <Logo className="logo" onClick={() => window.location.reload()}/>
-      <Signin />
+      <NavbarRightSide />
     </NavbarStyled>
   )
 }
