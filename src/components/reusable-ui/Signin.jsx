@@ -2,11 +2,13 @@ import { BsPersonCircle } from "react-icons/bs"
 import { Link, useParams } from "react-router-dom"
 import styled from "styled-components"
 
+
 export default function Signin() {
     const { username } = useParams()
+   
 
     return (
-        <SigninStyled>
+        <SigninStyled>   
             <div className="infos">
                 <p>Hey, <b>{username}</b></p>
                 <Link to="/"><button><small>Se déconnecter</small></button></Link>
@@ -22,6 +24,7 @@ const SigninStyled = styled.div`
     display: flex;
     color: #747B91;
     align-items: center;
+    padding-left: 50px;
     gap: 10px;
         .infos {
             text-align: right;
