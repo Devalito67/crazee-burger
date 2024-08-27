@@ -1,6 +1,12 @@
+import styled from "styled-components";
 
 export default function AdminPanel() {
   return (
-    <div>AdminPanel</div>
+    <AdminPanelStyled>AdminPanel</AdminPanelStyled>
   )
 }
+
+const AdminPanelStyled = styled.div`
+  display: flex;
+  height: 250px;
+`;
