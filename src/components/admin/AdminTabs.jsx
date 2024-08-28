@@ -33,6 +33,7 @@ export default function AdminTabs() {
             icon: isCollapsed ? <FiChevronDown /> : <FiChevronUp />,
             text: null,
             onClick: handleAdminClick,
+            isCollapsed: isCollapsed,
         },
         {
             key: "addProduct",
@@ -56,6 +57,7 @@ export default function AdminTabs() {
                 text={tab.text}
                 onClick={tab.onClick}
                 isSelected={selectedTab === tab.key}
+                isCollapsed={tab.isCollapsed}
             />
         ))}
     </AdminTabsStyled>
@@ -64,5 +66,6 @@ export default function AdminTabs() {
 const AdminTabsStyled = styled.div`
   display: flex;
   height: 44px;
- border: 2px solid red;
+  column-gap:1px;
+  padding-left: 71px;
 `;
