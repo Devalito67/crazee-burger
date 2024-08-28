@@ -2,13 +2,16 @@ import "react-toastify/dist/ReactToastify.css"
 import styled from "styled-components"
 import ToggleButton from "./ToggleButton"
 import Signin from "./reusable-ui/Signin"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { FaUserSecret } from "react-icons/fa"
 import { ToastAdmin } from "./ToastAdmin"
 import { toast } from "react-toastify"
+import OrderPageContext from "../context/OrderPageContext"
 
-export default function NavbarRightSide({ setIsAdmin }) {
+
+export default function NavbarRightSide() {
   const [isChecked, setIsChecked] = useState(false)
+  const {setIsAdmin} = useContext(OrderPageContext)
 
   const handleToggle = () => {
     setIsChecked(prev => !prev);

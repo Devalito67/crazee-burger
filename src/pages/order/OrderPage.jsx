@@ -3,19 +3,24 @@ import Navbar from "../../components/reusable-ui/Navbar"
 import Main from "./Main"
 import Admin from "../../components/admin/Admin"
 import { useState } from "react"
+import OrderPageContext from "../../context/OrderPageContext"
 
 export default function OrderPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [selectedTab, setSelectedTab] = useState("addProduct");
   const [isCollapsed, setIsCollapsed] = useState(true);
-  
+ const orderPageContextValue ={ isAdmin, setIsAdmin}
+
+
   return (
     <OrderPageStyled>
-      <div className="container">
-        <Navbar setIsAdmin={setIsAdmin}/>
-        <Main />
-        {isAdmin && <Admin isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>}
-      </div>
+      <OrderPageContext.Provider value={orderPageContextValue}>
+        <div className="container">
+          <Navbar/>
+          <Main />
+          {isAdmin && <Admin isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />}
+        </div>
+      </OrderPageContext.Provider>
     </OrderPageStyled>
   )
 }

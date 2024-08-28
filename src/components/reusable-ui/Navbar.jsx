@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import Logo from "./Logo";
-
 import NavbarRightSide from "../NavbarRightSide";
 
-export default function Navbar({setIsAdmin}) {
+export default function Navbar() {
+
+
   return (
     <NavbarStyled>
       <Logo className="logo" onClick={() => window.location.reload()}/>
-      <NavbarRightSide setIsAdmin={setIsAdmin}/>
+      <NavbarRightSide />
     </NavbarStyled>
   )
 }
