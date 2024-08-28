@@ -9,16 +9,16 @@ export default function OrderPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [selectedTab, setSelectedTab] = useState("addProduct");
   const [isCollapsed, setIsCollapsed] = useState(true);
- const orderPageContextValue ={ isAdmin, setIsAdmin}
+  const orderPageContextValue = { isAdmin, setIsAdmin, isCollapsed, setIsCollapsed, selectedTab, setSelectedTab }
 
 
   return (
     <OrderPageStyled>
       <OrderPageContext.Provider value={orderPageContextValue}>
         <div className="container">
-          <Navbar/>
+          <Navbar />
           <Main />
-          {isAdmin && <Admin isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />}
+          {isAdmin && <Admin />}
         </div>
       </OrderPageContext.Provider>
     </OrderPageStyled>

@@ -2,8 +2,11 @@
 import styled from "styled-components";
 import AdminAddProduct from "./AdminAddProduct";
 import AdminEditProduct from "./AdminEditProduct";
+import OrderPageContext from "../../context/OrderPageContext";
+import { useContext } from "react";
 
-export default function AdminPanel({selectedTab}) {
+export default function AdminPanel() {
+  const {selectedTab} = useContext(OrderPageContext)
   return (
     <AdminPanelStyled>
       {selectedTab === "addProduct" && <AdminAddProduct/>}
