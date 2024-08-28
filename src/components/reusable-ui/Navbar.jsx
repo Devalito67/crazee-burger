@@ -19,7 +19,6 @@ const NavbarStyled = styled.nav`
   background-color: white;
   padding-left: 20px;
   padding-right: 70px;
-  border-radius: 15px 15px 0 0;
     .logo{
       cursor: pointer;
     }

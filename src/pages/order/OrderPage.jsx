@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import Navbar from "../../components/reusable-ui/Navbar"
 import Main from "./Main"
-import Admin from "../../components/admin/Admin"
 import { useState } from "react"
 import OrderPageContext from "../../context/OrderPageContext"
 
@@ -11,14 +10,12 @@ export default function OrderPage() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const orderPageContextValue = { isAdmin, setIsAdmin, isCollapsed, setIsCollapsed, selectedTab, setSelectedTab }
 
-
   return (
     <OrderPageStyled>
       <OrderPageContext.Provider value={orderPageContextValue}>
         <div className="container">
           <Navbar />
           <Main />
-          {isAdmin && <Admin />}
         </div>
       </OrderPageContext.Provider>
     </OrderPageStyled>
@@ -36,5 +33,8 @@ justify-content: center;
     display: flex;
     flex-direction: column;
     height: 95vh;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
   }
 `

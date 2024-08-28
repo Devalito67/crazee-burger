@@ -16,6 +16,10 @@ export default function Admin() {
 
 const AdminStyled = styled.div`
 display: flex;
+width: 100%;
+position:absolute;
+bottom: 0;
+left:0;
 flex-direction: column;
-border: 2px solid blue;
+font-family: "Open Sans", cursive;
 `;
