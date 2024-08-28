@@ -5,14 +5,16 @@ import Admin from "../../components/admin/Admin"
 import { useState } from "react"
 
 export default function OrderPage() {
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("addProduct");
+  const [isCollapsed, setIsCollapsed] = useState(true);
   
   return (
     <OrderPageStyled>
       <div className="container">
-        <Navbar isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>
+        <Navbar setIsAdmin={setIsAdmin}/>
         <Main />
-        {isAdmin && <Admin />}
+        {isAdmin && <Admin isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>}
       </div>
     </OrderPageStyled>
   )

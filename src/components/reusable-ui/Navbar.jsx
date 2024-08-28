@@ -3,11 +3,11 @@ import Logo from "./Logo";
 
 import NavbarRightSide from "../NavbarRightSide";
 
-export default function Navbar({isAdmin, setIsAdmin}) {
+export default function Navbar({setIsAdmin}) {
   return (
     <NavbarStyled>
       <Logo className="logo" onClick={() => window.location.reload()}/>
-      <NavbarRightSide isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>
+      <NavbarRightSide setIsAdmin={setIsAdmin}/>
     </NavbarStyled>
   )
 }
