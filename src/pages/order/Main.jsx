@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import  Menu  from "./Menu"
+import Admin from "../../components/admin/Admin";
+import { useContext } from "react";
+import OrderPageContext from "../../context/OrderPageContext";
 
 export default function Main() {
+  const { isAdmin} = useContext(OrderPageContext)
+
   return (
     <MainStyled>
       <Menu />
+      {isAdmin && <Admin />}
     </MainStyled>
   )
 }
@@ -12,7 +18,6 @@ export default function Main() {
 const MainStyled = styled.div`
   background-color: #f5f5f5;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
-  border-radius: 0px 0px 15px 15px;
   flex: 1;
   overflow: auto;
 `;
