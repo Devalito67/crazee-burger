@@ -7,10 +7,9 @@ import { useContext } from "react";
 
 export default function Admin() {
     const { isCollapsed} = useContext(OrderPageContext)
-
     return <AdminStyled>
         <AdminTabs />
-        {isCollapsed && <AdminPanel/>}
+        {!isCollapsed && <AdminPanel/>}
     </AdminStyled>
 }
 

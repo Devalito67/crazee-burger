@@ -7,6 +7,7 @@ import { useContext } from "react";
 
 export default function AdminPanel() {
   const {selectedTab} = useContext(OrderPageContext)
+  
   return (
     <AdminPanelStyled>
       {selectedTab === "addProduct" && <AdminAddProduct/>}

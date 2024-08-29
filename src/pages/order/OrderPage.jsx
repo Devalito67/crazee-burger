@@ -7,7 +7,7 @@ import OrderPageContext from "../../context/OrderPageContext"
 export default function OrderPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [selectedTab, setSelectedTab] = useState("addProduct");
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const orderPageContextValue = { isAdmin, setIsAdmin, isCollapsed, setIsCollapsed, selectedTab, setSelectedTab }
 
   return (

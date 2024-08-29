@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 
-export default function Tab({ icon, text, onClick, isSelected, isCollapsed= null }) {
-  const className = `${isSelected ? 'selected' : ''} ${isCollapsed === false && 'notCollapsed'}`;
-
+export default function Tab({ icon, label, onClick, className }) {
   return (
     <TabStyled onClick={onClick} className={className}>
-      <span>{icon}</span>{text && <span>{text}</span>}
+      <span>{icon}</span>{label && <span>{label}</span>}
     </TabStyled>
   )
 }
@@ -26,7 +24,11 @@ const TabStyled = styled.button`
   cursor: pointer;
   color: #93A2B1;
   background-color: white;
-    &.notCollapsed, &.selected{
+    &:hover{
+      text-decoration: underline solid 2px;
+      text-underline-offset: 6px;
+    }
+    &.collapsed, &.selected{
     background-color: #292729;
     color: white;
     border: 1px solid #292729;
