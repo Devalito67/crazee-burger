@@ -4,51 +4,62 @@ import { MdOutlineEuro } from "react-icons/md";
 import styled from "styled-components";
 import OrderPageContext from "../../context/OrderPageContext";
 import { useContext, useState } from "react";
+import defaultImage from "../../../public/images/coming-soon.png";
 
 export default function AdminAddProduct() {
   const { menu, setMenu } = useContext(OrderPageContext);
-  const [newProduct, setNewProduct] = useState({
+  const emptyProduct = {
     id: "",
     imageSource: "",
     title: "",
     price: 0,
-  })
+  }
+  const [newProduct, setNewProduct] = useState(emptyProduct)
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    
+
     const updatedProduct = {
       id: crypto.randomUUID(),
-      imageSource: e.target.productPicture.value || "../../../public/images/coming-soon.png",
-      title: e.target.productName.value || '\u00A0',
-      price: e.target.productPrice.value || 0.00,
+      imageSource: e.target.imageSource.value || defaultImage,
+      title: e.target.title.value || '\u00A0',
+      price: e.target.price.value || 0.00,
     };
 
     setNewProduct(updatedProduct);
 
-    const copyMenu = [updatedProduct,...menu];
+    const copyMenu = [updatedProduct, ...menu];
     setMenu(copyMenu);
 
     console.log(updatedProduct);
+    e.target.reset();
+    setNewProduct(emptyProduct)
   };
 
-return (
-  <AdminAddProductStyled>
-    <div className="image">image</div>
-    <form className="form" onSubmit={handleFormSubmit}>
-      <div>
-        <FaHamburger /><input name="productName" type="text" placeholder="Nom du produit (ex: Super Burger)" />
-      </div>
-      <div>
-        <BsFillCameraFill /><input name="productPicture" type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" />
-      </div>
-      <div>
-        <MdOutlineEuro /><input name="productPrice" type="text" placeholder="Prix" />
-      </div>
-      <div><button>Ajouter un nouveau produit au menu</button></div>
-    </form>
-  </AdminAddProductStyled>
-)
+  const handleChange = (e, inputName) => {
+    setNewProduct((prevState) => ({
+      ...prevState,
+      [inputName]: e.target.value,
+    }));
+  };
+
+  return (
+    <AdminAddProductStyled>
+      <div className="image"> {newProduct.imageSource ? <img src={newProduct.imageSource} alt="Product" /> : "Aucune image"}</div>
+      <form className="form" onSubmit={handleFormSubmit}>
+        <div>
+          <FaHamburger /><input name="title" type="text" placeholder="Nom du produit (ex: Super Burger)" />
+        </div>
+        <div>
+          <BsFillCameraFill /><input name="imageSource" type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={(e) => handleChange(e, "imageSource")} />
+        </div>
+        <div>
+          <MdOutlineEuro /><input name="price" type="text" placeholder="Prix" />
+        </div>
+        <div><button>Ajouter un nouveau produit au menu</button></div>
+      </form>
+    </AdminAddProductStyled>
+  )
 }
 
 const AdminAddProductStyled = styled.div`
@@ -57,7 +68,18 @@ display: flex;
 flex:1;
 
   .image {
-    border: 1px solid green;
+    display: flex;
+    border: 1px solid #E4E5E9;
+    width: 215px;
+    height: 120px;
+    justify-content: center;
+    align-items: center;
+    color: #93A2B1;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
   }
   .form {
     border: 1px solid blue;
