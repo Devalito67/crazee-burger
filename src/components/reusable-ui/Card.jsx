@@ -29,6 +29,7 @@ const CardStyled = styled.div`
     align-items: center;
     padding: 50px 20px 10px;
     row-gap: 20px;
+    background-color: white;
         .picture-card {
             height: 145px;
             width: 200px;
