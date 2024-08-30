@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { fakeMenu2 } from "../../data__mocked/fakeMenu"
 import Card from "../../components/reusable-ui/Card";
-import { useState } from "react";
+import { useContext} from "react";
 import { formatPrice } from "../../utils/maths";
+import OrderPageContext from "../../context/OrderPageContext";
 
 export default function Menu() {
-    const [ menu, setMenu ] = useState(fakeMenu2)
+    const { menu } = useContext(OrderPageContext)
     
     return (
         <MenuStyled>
@@ -14,7 +14,7 @@ export default function Menu() {
                 key={id}
                 imageSource={imageSource}
                 title={title}
-                description={formatPrice( price )}
+                price={formatPrice( price )}
             />
 })}
         </MenuStyled>

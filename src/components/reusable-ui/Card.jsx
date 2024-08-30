@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import PrimaryButton from "./PrimaryButton"
 
-export default function Card({ imageSource, title, description }) {
+export default function Card({ imageSource, title, price}) {
 
     return (
         <CardStyled >
@@ -11,7 +11,7 @@ export default function Card({ imageSource, title, description }) {
             <div className="card-infos">
                 <h2>{title}</h2>
                 <div className="card-description">
-                    <p>{description}</p>
+                    <p>{price}</p>
                     <PrimaryButton label="Ajouter" />
                 </div>
             </div>
