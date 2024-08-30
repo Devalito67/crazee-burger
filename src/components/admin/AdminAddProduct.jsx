@@ -1,10 +1,9 @@
-import { BsFillCameraFill } from "react-icons/bs";
-import { FaHamburger } from "react-icons/fa";
-import { MdOutlineEuro } from "react-icons/md";
 import styled from "styled-components";
 import OrderPageContext from "../../context/OrderPageContext";
 import { useContext, useState } from "react";
 import defaultImage from "../../../public/images/coming-soon.png";
+import Input from "./Input";
+import { getAdminInputsConfig } from "./getAdminInputsConfig";
 
 export default function AdminAddProduct() {
   const { menu, setMenu } = useContext(OrderPageContext);
@@ -15,6 +14,7 @@ export default function AdminAddProduct() {
     price: 0,
   }
   const [newProduct, setNewProduct] = useState(emptyProduct)
+  const inputs = getAdminInputsConfig;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -27,35 +27,28 @@ export default function AdminAddProduct() {
     };
 
     setNewProduct(updatedProduct);
-
     const copyMenu = [updatedProduct, ...menu];
     setMenu(copyMenu);
-
-    console.log(updatedProduct);
     e.target.reset();
     setNewProduct(emptyProduct)
   };
 
   const handleChange = (e, inputName) => {
+    console.log(inputName);
     setNewProduct((prevState) => ({
       ...prevState,
       [inputName]: e.target.value,
     }));
   };
 
+
   return (
     <AdminAddProductStyled>
       <div className="image"> {newProduct.imageSource ? <img src={newProduct.imageSource} alt="Product" /> : "Aucune image"}</div>
       <form className="form" onSubmit={handleFormSubmit}>
-        <div>
-          <FaHamburger /><input name="title" type="text" placeholder="Nom du produit (ex: Super Burger)" />
-        </div>
-        <div>
-          <BsFillCameraFill /><input name="imageSource" type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={(e) => handleChange(e, "imageSource")} />
-        </div>
-        <div>
-          <MdOutlineEuro /><input name="price" type="text" placeholder="Prix" />
-        </div>
+        {inputs.map((input) => (
+          <Input key={input.key} name={input.name} placeholder={input.placeholder} icon={input.icon} onChange={(e) => handleChange(e, input.name)} />
+        ))}
         <div><button>Ajouter un nouveau produit au menu</button></div>
       </form>
     </AdminAddProductStyled>
@@ -86,11 +79,6 @@ flex:1;
     display: flex;
     flex-direction: column;
     flex: 1;
-      input {
-        border: 1px solid darkblue;
-        flex: 1;
-        height: 100%;
-      }
       div {
         display: flex;
         flex: 0.25;
