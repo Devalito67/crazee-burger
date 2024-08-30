@@ -9,6 +9,9 @@ const OrderPageContext = createContext({
 
   selectedTab: "",
   setSelectedTab: () => {},
+
+  menu: [],
+  setMenu: () => {},
 });
 
 export default OrderPageContext;
