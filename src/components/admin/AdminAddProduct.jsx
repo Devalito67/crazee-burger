@@ -44,7 +44,7 @@ export default function AdminAddProduct() {
 
   return (
     <AdminAddProductStyled>
-      <div className="image"> {newProduct.imageSource ? <img src={newProduct.imageSource} alt="Product" /> : "Aucune image"}</div>
+      <div className="image"> {newProduct.imageSource ? <img src={newProduct.imageSource} alt="imageProduct preview" /> : "Aucune image"}</div>
       <form className="form" onSubmit={handleFormSubmit}>
         {inputs.map((input) => (
           <Input key={input.key} name={input.name} placeholder={input.placeholder} icon={input.icon} onChange={(e) => handleChange(e, input.name)} />
@@ -56,12 +56,14 @@ export default function AdminAddProduct() {
 }
 
 const AdminAddProductStyled = styled.div`
-border: 1px solid red;
+/* border: 1px solid red; */
 display: flex;
-flex:1;
-
+column-gap: 20px;
+background-color: white;
+width: 65%;
   .image {
     display: flex;
+    flex-shrink: 0;
     border: 1px solid #E4E5E9;
     width: 215px;
     height: 120px;
@@ -75,17 +77,22 @@ flex:1;
       }
   }
   .form {
-    border: 1px solid blue;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+    display: grid;
+    grid-row-gap: 8px;
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
       div {
-        display: flex;
-        flex: 0.25;
         align-items: center;
       }
       button {
         cursor: pointer;
+        padding: 10px 29px;
+        height: 100%;
+        color: white;
+        background-color: #60BD4F;
+        font-weight: bold;
+        font-size: 12px;
+        border-radius: 5px;
       }
   }
   
