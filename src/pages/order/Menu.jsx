@@ -1,26 +1,26 @@
 import styled from "styled-components";
 import Card from "../../components/reusable-ui/Card";
-import { useContext} from "react";
+import { useContext } from "react";
 import { formatPrice } from "../../utils/maths";
 import OrderPageContext from "../../context/OrderPageContext";
 
 export default function Menu() {
     const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
-    
+
     return (
         <MenuStyled>
             {menu && menu.map(({ id, imageSource, title, price }) => {
-            return <Card
-                key={id}
-                id={id}
-                imageSource={imageSource}
-                title={title}
-                price={formatPrice( price )}
-                isAdmin= {isAdmin}
-                menu= {menu}
-                setMenu= {setMenu}
-            />
-})}
+                return <Card
+                    key={id}
+                    id={id}
+                    imageSource={imageSource}
+                    title={title}
+                    price={formatPrice(price)}
+                    isAdmin={isAdmin}
+                    menu={menu}
+                    setMenu={setMenu}
+                />
+            })}
         </MenuStyled>
     )
 }
