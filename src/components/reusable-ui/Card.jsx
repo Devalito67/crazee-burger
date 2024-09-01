@@ -1,10 +1,18 @@
 import styled from "styled-components"
 import PrimaryButton from "./PrimaryButton"
+import { TiDelete } from "react-icons/ti"
 
-export default function Card({ imageSource, title, price}) {
+export default function  Card({ imageSource, title, price, isAdmin, menu, setMenu, id}) {
+
+    function onClick() {
+        const menuFiltered= menu.filter((cardMenu) =>  cardMenu.id !== id);
+        setMenu(menuFiltered)
+
+    }
 
     return (
         <CardStyled >
+            {isAdmin && <button className="deleteIcon" onClick={onClick}><TiDelete/></button>}
             <div className="picture-card">
                 <img src={imageSource} alt={title} />
             </div>
@@ -30,6 +38,19 @@ const CardStyled = styled.div`
     padding: 50px 20px 10px;
     row-gap: 20px;
     background-color: white;
+    position: relative;
+        .deleteIcon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            color: #ffa01b;
+            background-color: transparent;
+            cursor: pointer;
+                &:hover {
+                    color: #E25549;
+                }
+        }
         .picture-card {
             height: 145px;
             width: 200px;

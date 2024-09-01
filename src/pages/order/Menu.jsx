@@ -5,16 +5,20 @@ import { formatPrice } from "../../utils/maths";
 import OrderPageContext from "../../context/OrderPageContext";
 
 export default function Menu() {
-    const { menu } = useContext(OrderPageContext)
+    const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
     
     return (
         <MenuStyled>
             {menu && menu.map(({ id, imageSource, title, price }) => {
             return <Card
                 key={id}
+                id={id}
                 imageSource={imageSource}
                 title={title}
                 price={formatPrice( price )}
+                isAdmin= {isAdmin}
+                menu= {menu}
+                setMenu= {setMenu}
             />
 })}
         </MenuStyled>
