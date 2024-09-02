@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export default function PrimaryButton({ label, Icon }) {
+export default function PrimaryButton({ label, Icon, onClick }) {
     return (
-        <PrimaryButtonStyled >{label} {Icon && Icon}</PrimaryButtonStyled>
+        <PrimaryButtonStyled onClick={onClick && onClick}>{label} {Icon && Icon}</PrimaryButtonStyled>
     )
 }
 

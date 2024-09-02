@@ -1,18 +1,16 @@
-import { FiCheckCircle } from "react-icons/fi";
 import styled from "styled-components";
 import Input from "../Input";
+import SubmitMessage from "./SubmitMessage";
 
 export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
-    return (
-        <AdminFormStyled className="form" onSubmit={handleSubmit}>
-            {inputs.map((input) => (
-                <Input key={input.key} name={input.name} placeholder={input.placeholder} icon={input.icon} onChange={(e) => handleChange(e, input.name)} />
-            ))}
-            <div><button>Ajouter un nouveau produit au menu</button>{isSubmitted && <div className="successMessage">
-                <FiCheckCircle /><span>Ajouté avec succès !</span>
-            </div>}</div>
-        </AdminFormStyled>
-    )
+  return (
+    <AdminFormStyled className="form" onSubmit={handleSubmit}>
+      {inputs.map((input) => (
+        <Input key={input.key} name={input.name} placeholder={input.placeholder} icon={input.icon} onChange={handleChange} />
+      ))}
+      <div><button>Ajouter un nouveau produit au menu</button>{isSubmitted && <SubmitMessage />}</div>
+    </AdminFormStyled>
+  )
 }
 
 const AdminFormStyled = styled.form`
@@ -42,12 +40,5 @@ const AdminFormStyled = styled.form`
           color: white;
           background-color: #60BD4F;
         }
-      }
-      .successMessage {
-        display: flex;
-        column-gap: 5px;
-        color: #60BD4F;
-        padding-left: 10px;
-        padding-right: 2px;
       }
 `;

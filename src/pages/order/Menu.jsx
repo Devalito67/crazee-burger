@@ -3,10 +3,11 @@ import Card from "../../components/reusable-ui/Card";
 import { useContext } from "react";
 import { formatPrice } from "../../utils/maths";
 import OrderPageContext from "../../context/OrderPageContext";
+import defaultImage from "../../../public/images/coming-soon.png";
 
 export default function Menu() {
     const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
-    function handleDeleteCard(id) {
+    const handleDeleteCard = (id) => {
         const menuFiltered = menu.filter((cardMenu) => cardMenu.id !== id);
         setMenu(menuFiltered)
     }
@@ -16,9 +17,9 @@ export default function Menu() {
             {menu && menu.map(({ id, imageSource, title, price }) => {
                 return <Card
                     key={id}
-                    imageSource={imageSource}
-                    title={title}
-                    price={formatPrice(price)}
+                    imageSource={imageSource ? imageSource : defaultImage}
+                    title={title ? title : '\u00A0'}
+                    price={price ? formatPrice(price) : formatPrice(7)}
                     isAdmin={isAdmin}
                     onClick={() => handleDeleteCard(id)}
                 />
