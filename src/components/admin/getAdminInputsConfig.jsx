@@ -6,19 +6,19 @@ export const getAdminInputsConfig = [
     {
       key: "titleInput",
       name: "title",
-      icon: <FaHamburger />,
+      Icon: <FaHamburger />,
       placeholder: "Ajouter un produit",
     },
     {
       key: "imageInput",
       name: "imageSource",
-      icon: <BsFillCameraFill />,
+      Icon: <BsFillCameraFill />,
       placeholder: "Ajouter un produit",
     },
     {
       key: "priceInput",
       name: "price",
-      icon: <MdOutlineEuro />,
+      Icon: <MdOutlineEuro />,
       placeholder: "Price",
     }
   ];

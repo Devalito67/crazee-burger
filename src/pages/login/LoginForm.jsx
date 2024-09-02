@@ -25,10 +25,11 @@ export default function LoginForm() {
       <hr />
       <h2>Connectez-vous</h2>
       <TextInput 
-        Icon={<BsPersonCircle className="icon"/>}
+        Icon={<BsPersonCircle/>}
         value={inputValue}
         placeholder="Entrez votre prénom"
         onChange={handleChange}
+        version="normalStyle"
         required
         />
       <PrimaryButton

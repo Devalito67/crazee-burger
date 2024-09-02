@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import Input from "../Input";
 import SubmitMessage from "./SubmitMessage";
+import TextInput from "../../reusable-ui/TextInput";
 
 export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
   return (
     <AdminFormStyled className="form" onSubmit={handleSubmit}>
       {inputs.map((input) => (
-        <Input key={input.key} name={input.name} placeholder={input.placeholder} icon={input.icon} onChange={handleChange} />
+        <TextInput key={input.key} name={input.name} placeholder={input.placeholder} Icon={input.Icon} onChange={handleChange} version="inputFormStyle"/>
       ))}
       <div><button>Ajouter un nouveau produit au menu</button>{isSubmitted && <SubmitMessage />}</div>
     </AdminFormStyled>
