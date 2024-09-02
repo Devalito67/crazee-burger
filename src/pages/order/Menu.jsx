@@ -6,19 +6,21 @@ import OrderPageContext from "../../context/OrderPageContext";
 
 export default function Menu() {
     const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
+    function handleDeleteCard(id) {
+        const menuFiltered = menu.filter((cardMenu) => cardMenu.id !== id);
+        setMenu(menuFiltered)
+    }
 
     return (
         <MenuStyled>
             {menu && menu.map(({ id, imageSource, title, price }) => {
                 return <Card
                     key={id}
-                    id={id}
                     imageSource={imageSource}
                     title={title}
                     price={formatPrice(price)}
                     isAdmin={isAdmin}
-                    menu={menu}
-                    setMenu={setMenu}
+                    onClick={() => handleDeleteCard(id)}
                 />
             })}
         </MenuStyled>

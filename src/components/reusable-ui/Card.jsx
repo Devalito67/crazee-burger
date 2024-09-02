@@ -1,28 +1,15 @@
 import styled from "styled-components"
-import PrimaryButton from "./PrimaryButton"
 import { TiDelete } from "react-icons/ti"
+import CardInfos from "./CardInfos"
 
-export default function  Card({ imageSource, title, price, isAdmin, menu, setMenu, id}) {
-
-    function onClick() {
-        const menuFiltered= menu.filter((cardMenu) =>  cardMenu.id !== id);
-        setMenu(menuFiltered)
-
-    }
-
+export default function Card({ imageSource, title, price, isAdmin, onClick }) {
     return (
         <CardStyled >
-            {isAdmin && <button className="deleteIcon" onClick={onClick}><TiDelete/></button>}
+            {isAdmin && <button className="deleteIcon" onClick={onClick}><TiDelete /></button>}
             <div className="picture-card">
                 <img src={imageSource} alt={title} />
             </div>
-            <div className="card-infos">
-                <h2>{title}</h2>
-                <div className="card-description">
-                    <p>{price}</p>
-                    <PrimaryButton label="Ajouter" />
-                </div>
-            </div>
+            <CardInfos title={title} description={price}/>
         </CardStyled>
     )
 }
@@ -61,42 +48,6 @@ const CardStyled = styled.div`
                 height: 145px;
                 width: 100%;
                 object-fit: contain;
-            }
-        }
-        .card-infos{
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 0 5px 5px;
-            flex-grow: 1;
-                h2 {
-                    font-family: "Amatic SC", cursive;
-                    font-size: 36px;     
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    max-width: 100%;
-                    overflow: hidden;
-                }
-        }
-        .card-description {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: -7.5px;
-            flex-grow: 1;
-            p {
-                color: #ffa01b;
-                font-size: 16px;
-                flex: 1;
-            }
-            button {
-                flex:1;
-                height: 38px;
-                &:active {
-                    color: white;
-                    background-color: #ffa01b;
-                }
             }
         }
 `
