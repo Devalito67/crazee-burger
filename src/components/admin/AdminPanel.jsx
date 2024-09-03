@@ -18,7 +18,6 @@ export default function AdminPanel() {
 
 const AdminPanelStyled = styled.div`
   display: flex;
-  height: 250px;
   background-color: white;
   box-shadow: 0 -6px 8px -2px rgba(0,0,0,0.1);
   border: 1px solid #E4E5E9;
