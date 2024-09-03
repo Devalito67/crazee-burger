@@ -6,7 +6,7 @@ export default function CardInfos({ title, description }) {
         <h2>{title}</h2>
         <div className="card-description">
             <p>{description}</p>
-            <PrimaryButton label="Ajouter" />
+            <PrimaryButton version="cardAddButtonStyle" label="Ajouter" />
         </div>
     </CardInfosStyled>
 }
@@ -35,14 +35,6 @@ const CardInfosStyled = styled.div`
                 color: #ffa01b;
                 font-size: 16px;
                 flex: 1;
-            }
-            button {
-                flex:1;
-                height: 38px;
-                &:active {
-                    color: white;
-                    background-color: #ffa01b;
-                }
             }
         }
 `;
