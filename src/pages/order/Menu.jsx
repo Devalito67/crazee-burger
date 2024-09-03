@@ -19,7 +19,7 @@ export default function Menu() {
                     key={id}
                     imageSource={imageSource ? imageSource : defaultImage}
                     title={title ? title : '\u00A0'}
-                    price={price ? formatPrice(price) : formatPrice(7)}
+                    price={price ? formatPrice(price) : formatPrice(0)}
                     isAdmin={isAdmin}
                     onClick={() => handleDeleteCard(id)}
                 />
