@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import AdminPanel from "./AdminPanel";
-import AdminTabs from "./AdminTabs";
 import OrderPageContext from "../../context/OrderPageContext";
 import { useContext } from "react";
+import AdminTabs from "./adminPanel/adminTabs/AdminTabs";
+import AdminPanel from "./adminPanel/AdminPanel";
 
 export default function Admin() {
     const { isCollapsed} = useContext(OrderPageContext)

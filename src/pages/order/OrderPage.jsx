@@ -3,12 +3,14 @@ import Navbar from "../../components/reusable-ui/Navbar"
 import Main from "./Main"
 import { useState } from "react"
 import OrderPageContext from "../../context/OrderPageContext"
+import { fakeMenu2 } from "../../data__mocked/fakeMenu"
 
 export default function OrderPage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [selectedTab, setSelectedTab] = useState("addProduct");
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const orderPageContextValue = { isAdmin, setIsAdmin, isCollapsed, setIsCollapsed, selectedTab, setSelectedTab }
+  const [ menu, setMenu ] = useState(fakeMenu2);
+  const orderPageContextValue = { isAdmin, setIsAdmin, menu, setMenu, isCollapsed, setIsCollapsed, selectedTab, setSelectedTab }
 
   return (
     <OrderPageStyled>

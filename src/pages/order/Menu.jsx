@@ -1,22 +1,29 @@
 import styled from "styled-components";
-import { fakeMenu2 } from "../../data__mocked/fakeMenu"
 import Card from "../../components/reusable-ui/Card";
-import { useState } from "react";
+import { useContext } from "react";
 import { formatPrice } from "../../utils/maths";
+import OrderPageContext from "../../context/OrderPageContext";
+import defaultImage from "/images/coming-soon.png";
 
 export default function Menu() {
-    const [ menu, setMenu ] = useState(fakeMenu2)
-    
+    const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
+    const handleDeleteCard = (id) => {
+        const menuFiltered = menu.filter((cardMenu) => cardMenu.id !== id);
+        setMenu(menuFiltered)
+    }
+
     return (
         <MenuStyled>
             {menu && menu.map(({ id, imageSource, title, price }) => {
-            return <Card
-                key={id}
-                imageSource={imageSource}
-                title={title}
-                description={formatPrice( price )}
-            />
-})}
+                return <Card
+                    key={id}
+                    imageSource={imageSource ? imageSource : defaultImage}
+                    title={title ? title : '\u00A0'}
+                    price={price ? formatPrice(price) : formatPrice(0)}
+                    isAdmin={isAdmin}
+                    onClick={() => handleDeleteCard(id)}
+                />
+            })}
         </MenuStyled>
     )
 }
