@@ -7,7 +7,7 @@ export default function EmptyMenuMessage({ onClick, title, message, labelButton 
         <EmptyMenuMessageStyled>
             <h4>{title}</h4>
             <div className="messageContainer">{message}</div>
-            {labelButton && <PrimaryButton version label={labelButton} onClick={onClick} />}
+            {labelButton && <PrimaryButton label={labelButton} onClick={onClick} />}
         </EmptyMenuMessageStyled>
     )
 }

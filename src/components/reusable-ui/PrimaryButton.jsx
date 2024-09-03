@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
 
-export default function PrimaryButton({ label, Icon, onClick, version }) {
+export default function PrimaryButton({ label, Icon, onClick, version= "PrimaryButtonStyled" }) {
     return (
         <PrimaryButtonStyled version={version} onClick={onClick && onClick}>{label} {Icon && Icon}</PrimaryButtonStyled>
     )
@@ -73,4 +73,5 @@ const buttonStyles = {
     loginButtonStyle,
     cardAddButtonStyle,
     successButtonStyle,
+    PrimaryButtonStyled,
 }

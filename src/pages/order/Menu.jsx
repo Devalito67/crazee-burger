@@ -3,7 +3,7 @@ import Card from "../../components/reusable-ui/Card";
 import { useContext } from "react";
 import { formatPrice } from "../../utils/maths";
 import OrderPageContext from "../../context/OrderPageContext";
-import defaultImage from "../../../public/images/coming-soon.png";
+import defaultImage from "/images/coming-soon.png";
 
 export default function Menu() {
     const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
