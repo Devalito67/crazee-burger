@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Tab from "./Tab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useContext } from "react";
-import OrderPageContext from "../../context/OrderPageContext";
+import OrderPageContext from "../../../../context/OrderPageContext";
 import { getAdminTabsConfig } from "./getAdminTabsConfig";
 
 export default function AdminTabs() {

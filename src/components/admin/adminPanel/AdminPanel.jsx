@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import AdminAddProduct from "./AdminAddProduct";
-import AdminEditProduct from "./AdminEditProduct";
-import OrderPageContext from "../../context/OrderPageContext";
+import AdminAddProduct from "./adminForm/AdminAddProduct";
+import AdminEditProduct from "./adminForm/AdminEditProduct";
+import OrderPageContext from "../../../context/OrderPageContext";
 import { useContext } from "react";
 
 export default function AdminPanel() {

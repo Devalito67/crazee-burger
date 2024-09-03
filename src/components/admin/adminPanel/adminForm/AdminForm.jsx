@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import SubmitMessage from "./SubmitMessage";
-import TextInput from "../../reusable-ui/TextInput";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import TextInput from "../../../reusable-ui/TextInput";
+import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 
 export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
   return (

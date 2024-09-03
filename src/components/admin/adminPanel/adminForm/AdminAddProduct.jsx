@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import OrderPageContext from "../../context/OrderPageContext";
+import OrderPageContext from "../../../../context/OrderPageContext";
 import { useContext, useState } from "react";
 import { getAdminInputsConfig } from "./getAdminInputsConfig";
-import AdminForm from "./AdminForm/AdminForm";
-import { EMPTY_PRODUCT } from "../../enums/product";
-import AdminImagePreview from "./AdminForm/AdminImagePreview";
+import AdminForm from "./AdminForm";
+import { EMPTY_PRODUCT } from "../../../../enums/product";
+import AdminImagePreview from "./AdminImagePreview";
 
 export default function AdminAddProduct() {
   const { menu, setMenu } = useContext(OrderPageContext);
