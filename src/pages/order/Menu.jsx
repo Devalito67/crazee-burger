@@ -6,22 +6,28 @@ import OrderPageContext from "../../context/OrderPageContext";
 import defaultImage from "/images/coming-soon.png";
 
 export default function Menu() {
-    const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
-    const handleDeleteCard = (id) => {
-        const menuFiltered = menu.filter((cardMenu) => cardMenu.id !== id);
-        setMenu(menuFiltered)
-    }
+    const { menu, setIsCollapsed, setSelectedTab} = useContext(OrderPageContext)
+
+     const handleCardSelected = (e, id) => {
+        e.stopPropagation();
+        console.log ("cardinfos", id)
+        const copyMenu = [...menu];
+        const cardSelected = copyMenu.find((cardMenu) => cardMenu.id === id);
+       console.log(cardSelected)
+       setSelectedTab("editProduct")
+       setIsCollapsed(false)
+     }
 
     return (
         <MenuStyled>
             {menu && menu.map(({ id, imageSource, title, price }) => {
                 return <Card
                     key={id}
+                    id={id}
                     imageSource={imageSource ? imageSource : defaultImage}
                     title={title ? title : '\u00A0'}
                     price={price ? formatPrice(price) : formatPrice(0)}
-                    isAdmin={isAdmin}
-                    onClick={() => handleDeleteCard(id)}
+                    onClick={(e) => handleCardSelected(e, id)}
                 />
             })}
         </MenuStyled>

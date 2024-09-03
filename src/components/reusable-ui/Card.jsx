@@ -1,15 +1,25 @@
 import styled from "styled-components"
 import { TiDelete } from "react-icons/ti"
 import CardInfos from "./CardInfos"
+import { useContext } from "react"
+import OrderPageContext from "../../context/OrderPageContext"
 
-export default function Card({ imageSource, title, price, isAdmin, onClick }) {
+export default function Card({ imageSource, title, price, id, onClick}) {
+    const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
+    const handleDeleteCard = (e, id) => {
+        e.stopPropagation();
+        const copyMenu = [...menu];
+        const menuFiltered = copyMenu.filter((cardMenu) => cardMenu.id !== id);
+        setMenu(menuFiltered)
+    }
+
     return (
-        <CardStyled >
-            {isAdmin && <button className="deleteIcon" onClick={onClick}><TiDelete /></button>}
+        <CardStyled id={id} onClick={onClick}>
+            {isAdmin && <button className="deleteIcon" onClick={(e) => handleDeleteCard(e, id)}><TiDelete /></button>}
             <div className="picture-card">
                 <img src={imageSource} alt={title} />
             </div>
-            <CardInfos title={title} description={price}/>
+            <CardInfos title={title} description={price} />
         </CardStyled>
     )
 }
@@ -26,6 +36,7 @@ const CardStyled = styled.div`
     row-gap: 20px;
     background-color: white;
     position: relative;
+    cursor: pointer;
         .deleteIcon {
             position: absolute;
             top: 15px;
