@@ -7,8 +7,7 @@ import { EMPTY_PRODUCT } from "../../../../enums/product";
 import AdminImagePreview from "./AdminImagePreview";
 
 export default function AdminAddProduct() {
-  const { menu, setMenu } = useContext(OrderPageContext);
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const { menu, setMenu, newProduct, setNewProduct } = useContext(OrderPageContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const inputs = getAdminInputsConfig;
 

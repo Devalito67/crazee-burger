@@ -6,17 +6,17 @@ import OrderPageContext from "../../context/OrderPageContext";
 import defaultImage from "/images/coming-soon.png";
 
 export default function Menu() {
-    const { menu, setIsCollapsed, setSelectedTab} = useContext(OrderPageContext)
+    const { menu, setIsCollapsed, setSelectedTab, setNewProduct, newProduct } = useContext(OrderPageContext)
 
-     const handleCardSelected = (e, id) => {
+    const handleCardSelected = (e, id) => {
         e.stopPropagation();
-        console.log ("cardinfos", id)
         const copyMenu = [...menu];
         const cardSelected = copyMenu.find((cardMenu) => cardMenu.id === id);
-       console.log(cardSelected)
-       setSelectedTab("editProduct")
-       setIsCollapsed(false)
-     }
+        setNewProduct(cardSelected);
+        console.log('newProduct.id', newProduct.id)
+        setSelectedTab("editProduct");
+        setIsCollapsed(false);
+    }
 
     return (
         <MenuStyled>

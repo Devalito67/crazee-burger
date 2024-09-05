@@ -12,6 +12,12 @@ const OrderPageContext = createContext({
 
   menu: [],
   setMenu: () => {},
+
+  selectedCard: {},
+  setSelectedCard: () => {},
+
+  newProduct: {},
+  setNewProduct: () => {},
 });
 
 export default OrderPageContext;
