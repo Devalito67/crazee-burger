@@ -18,6 +18,9 @@ const OrderPageContext = createContext({
 
   newProduct: {},
   setNewProduct: () => {},
+
+  isCardSelected: Boolean,
+  setIsCardSelected: () => {},
 });
 
 export default OrderPageContext;
