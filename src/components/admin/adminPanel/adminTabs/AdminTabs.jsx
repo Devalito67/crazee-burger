@@ -40,6 +40,7 @@ export default function AdminTabs() {
 
 const AdminTabsStyled = styled.div`
   display: flex;
+  width: max-content;
   height: 44px;
   column-gap:1px;
   padding-left: 71px;

@@ -69,9 +69,33 @@ const successButtonStyle = css`
         }
 `
 
+const selectedCardButtonStyle = css`
+    flex:1;
+    height: 38px;
+    font-size: 15px;
+    background-color: white;
+    color: #ffa01b;
+        &:hover/* :not(:disabled)  */{
+            background-color: #ffa01b;
+            color: white;
+            border: 1px solid white;
+            transition: all 200ms ease-out;
+        };
+        &:active {
+            color: #ffa01b;
+            background-color: white;
+            border: 1px solid #ffa01b;
+        }
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+    };
+`
+
 const buttonStyles = {
     loginButtonStyle,
     cardAddButtonStyle,
     successButtonStyle,
     PrimaryButtonStyled,
+    selectedCardButtonStyle
 }
