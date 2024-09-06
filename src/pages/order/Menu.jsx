@@ -4,18 +4,31 @@ import { useContext } from "react";
 import { formatPrice } from "../../utils/maths";
 import OrderPageContext from "../../context/OrderPageContext";
 import defaultImage from "/images/coming-soon.png";
+import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, setIsCollapsed, setSelectedTab, setNewProduct, newProduct } = useContext(OrderPageContext)
+    const { menu, setMenu, setIsCollapsed, setSelectedTab, setNewProduct, isCardSelected, setIsCardSelected, setSelectedCard, selectedCard, newProduct} = useContext(OrderPageContext)
 
-    const handleCardSelected = (e, id) => {
+    const handleSelectedCard = (e, id) => {
         e.stopPropagation();
         const copyMenu = [...menu];
         const cardSelected = copyMenu.find((cardMenu) => cardMenu.id === id);
-        setNewProduct(cardSelected);
-        console.log('newProduct.id', newProduct.id)
         setSelectedTab("editProduct");
+        setSelectedCard(cardSelected)
+        setIsCardSelected(true);
+        console.log('isCardSelected', isCardSelected)
+        setNewProduct(cardSelected);
         setIsCollapsed(false);
+    }
+
+    const handleDeleteCard = (e, id) => {
+        e.stopPropagation();
+        const copyMenu = [...menu];
+        const menuFiltered = copyMenu.filter((cardMenu) => cardMenu.id !== id);
+        setMenu(menuFiltered);
+        if (selectedCard.id === id){
+        setNewProduct(EMPTY_PRODUCT);
+        setIsCardSelected(false);}
     }
 
     return (
@@ -27,7 +40,8 @@ export default function Menu() {
                     imageSource={imageSource ? imageSource : defaultImage}
                     title={title ? title : '\u00A0'}
                     price={price ? formatPrice(price) : formatPrice(0)}
-                    onClick={(e) => handleCardSelected(e, id)}
+                    onDeleteClick={(e) => handleDeleteCard(e, id)}
+                    onCardClick={(e) => handleSelectedCard(e, id)}
                 />
             })}
         </MenuStyled>
