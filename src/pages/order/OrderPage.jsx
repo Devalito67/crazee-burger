@@ -14,6 +14,7 @@ export default function OrderPage() {
   const [ selectedCard, setSelectedCard] = useState({});
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isCardSelected, setIsCardSelected] = useState(false)
+  const [updatedProduct, setUpdatedProduct] = useState(EMPTY_PRODUCT);
   const orderPageContextValue = {
     isAdmin,
     setIsAdmin,
@@ -28,7 +29,9 @@ export default function OrderPage() {
     newProduct,
     setNewProduct,
     isCardSelected,
-    setIsCardSelected
+    setIsCardSelected,
+    updatedProduct,
+    setUpdatedProduct
   }
 
   return (
