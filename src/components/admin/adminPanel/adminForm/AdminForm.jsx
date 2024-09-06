@@ -6,7 +6,7 @@ import { useContext } from "react";
 import OrderPageContext from "../../../../context/OrderPageContext";
 
 export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
-  const { newProduct } = useContext(OrderPageContext);
+  const { newProduct, selectedTab, isCardSelected } = useContext(OrderPageContext);
   return (
     <AdminFormStyled className="form" onSubmit={handleSubmit}>
       {inputs.map((input) => (
@@ -19,7 +19,8 @@ export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleCha
         onChange={handleChange}
         version="inputFormStyle"/>
       ))}
-      <div><PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle"/>{isSubmitted && <SubmitMessage />}</div>
+      {(selectedTab === "addProduct") && <div><PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle"/>{isSubmitted && <SubmitMessage />}</div>}
+      {(selectedTab === "editProduct" && isCardSelected) && <div className="hintFormMessage"><p>Cliquer sur un produit du menu pour le modifier <span>en temps réel</span></p></div>}
     </AdminFormStyled>
   )
 }
@@ -33,4 +34,12 @@ const AdminFormStyled = styled.form`
         display: flex;
         align-items: center;
       }
+    .hintFormMessage {
+      font-size: 15px;
+      font-family: "Open Sans", sans-serif;
+      color: #ffa01b;
+      span {
+        text-decoration: underline;
+      }
+    }
 `;
