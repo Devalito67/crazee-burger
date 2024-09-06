@@ -7,7 +7,7 @@ import defaultImage from "/images/coming-soon.png";
 import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, setMenu, setIsCollapsed, setSelectedTab, setNewProduct, isCardSelected, setIsCardSelected, setSelectedCard, selectedCard, newProduct} = useContext(OrderPageContext)
+    const { menu, setMenu, setIsCollapsed, setSelectedTab, setUpdatedProduct, isCardSelected, setIsCardSelected, setSelectedCard, selectedCard} = useContext(OrderPageContext)
 
     const handleSelectedCard = (e, id) => {
         e.stopPropagation();
@@ -17,7 +17,7 @@ export default function Menu() {
         setSelectedCard(cardSelected)
         setIsCardSelected(true);
         console.log('isCardSelected', isCardSelected)
-        setNewProduct(cardSelected);
+        setUpdatedProduct(cardSelected);
         setIsCollapsed(false);
     }
 
@@ -27,7 +27,7 @@ export default function Menu() {
         const menuFiltered = copyMenu.filter((cardMenu) => cardMenu.id !== id);
         setMenu(menuFiltered);
         if (selectedCard.id === id){
-        setNewProduct(EMPTY_PRODUCT);
+        setUpdatedProduct(EMPTY_PRODUCT);
         setIsCardSelected(false);}
     }
 

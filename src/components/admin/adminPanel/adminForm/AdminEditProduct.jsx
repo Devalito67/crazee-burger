@@ -4,13 +4,13 @@ import { getAdminInputsConfig } from "./getAdminInputsConfig";
 import AdminForm from "./AdminForm"; import AdminImagePreview from "./AdminImagePreview";
 import OrderPageContext from "../../../../context/OrderPageContext";
 export default function AdminEditProduct() {
-  const { newProduct, setNewProduct, setSelectedCard, setMenu } = useContext(OrderPageContext);
+  const { updatedProduct, setUpdatedProduct, setSelectedCard, setMenu } = useContext(OrderPageContext);
   const inputs = getAdminInputsConfig;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    setNewProduct((prevState) => {
+    setUpdatedProduct((prevState) => {
       const updatedProduct = {
         ...prevState,
         [name]: value,
@@ -32,7 +32,7 @@ export default function AdminEditProduct() {
 
   return (
     <AdminEditProductStyled>
-      <AdminImagePreview imageSource={newProduct.imageSource} />
+      <AdminImagePreview imageSource={updatedProduct.imageSource} />
       <AdminForm inputs={inputs} handleChange={handleInputChange} />
     </AdminEditProductStyled>
   )

@@ -6,14 +6,14 @@ import { useContext } from "react";
 import OrderPageContext from "../../../../context/OrderPageContext";
 
 export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
-  const { newProduct, selectedTab, isCardSelected } = useContext(OrderPageContext);
+  const { updatedProduct, selectedTab, isCardSelected } = useContext(OrderPageContext);
   return (
     <AdminFormStyled className="form" onSubmit={handleSubmit}>
       {inputs.map((input) => (
         <TextInput
         key={input.key}
         name={input.name}
-        value={newProduct[input.name]}
+        value={selectedTab === "editProduct"? updatedProduct[input.name] :""}
         placeholder={input.placeholder}
         Icon={input.Icon}
         onChange={handleChange}
