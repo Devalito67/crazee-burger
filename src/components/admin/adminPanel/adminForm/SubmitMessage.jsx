@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function SubmitMessage() {
   return <SubmitMessageStyled>
     <FiCheckCircle /><span>Ajouté avec succès !</span>
-</SubmitMessageStyled>
+  </SubmitMessageStyled>
 }
 
 const SubmitMessageStyled = styled.div`

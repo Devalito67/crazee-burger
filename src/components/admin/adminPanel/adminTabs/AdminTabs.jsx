@@ -9,7 +9,7 @@ import { getAdminTabsConfig } from "./getAdminTabsConfig";
 export default function AdminTabs() {
     const { isCollapsed, setIsCollapsed, selectedTab, setSelectedTab, inputTitleRef } = useContext(OrderPageContext)
     const tabs = getAdminTabsConfig(selectedTab)
-    
+
     const handleCollapseTabClick = () => {
         setIsCollapsed(prev => !prev);
     };
@@ -18,7 +18,6 @@ export default function AdminTabs() {
         await setSelectedTab(keyTab);
         await setIsCollapsed(false);
         inputTitleRef.current.focus();
-
     };
 
     return <AdminTabsStyled>

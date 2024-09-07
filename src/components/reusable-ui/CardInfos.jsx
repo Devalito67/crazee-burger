@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PrimaryButton from "./PrimaryButton";0
+import PrimaryButton from "./PrimaryButton";
 
 export default function CardInfos({ title, description, version }) {
 

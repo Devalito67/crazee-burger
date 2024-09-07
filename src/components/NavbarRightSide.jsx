@@ -8,10 +8,9 @@ import { ToastAdmin } from "./ToastAdmin"
 import { toast } from "react-toastify"
 import OrderPageContext from "../context/OrderPageContext"
 
-
 export default function NavbarRightSide() {
   const [isChecked, setIsChecked] = useState(false)
-  const {setIsAdmin} = useContext(OrderPageContext)
+  const { setIsAdmin } = useContext(OrderPageContext)
 
   const handleToggle = () => {
     setIsChecked(prev => !prev);

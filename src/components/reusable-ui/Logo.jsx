@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default function Logo({className, onClick}) {
+export default function Logo({ className, onClick }) {
     return (
         <LogoStyled className={className} onClick={onClick}>
             <h1>CRAZEE</h1><img src="/images/logo-orange.png" alt="logo" /><h1>BURGER</h1>

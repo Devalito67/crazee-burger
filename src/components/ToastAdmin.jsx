@@ -3,7 +3,7 @@ import { theme } from "../theme";
 import styled from "styled-components";
 
 export function ToastAdmin() {
-    return <ToastContainerStyled bodyClassName="body-toast" />
+  return <ToastContainerStyled bodyClassName="body-toast" />
 }
 
 const ToastContainerStyled = styled(ToastContainer)`
