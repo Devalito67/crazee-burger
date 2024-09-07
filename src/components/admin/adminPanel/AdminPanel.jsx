@@ -4,19 +4,23 @@ import AdminAddProduct from "./adminForm/AdminAddProduct";
 import AdminEditProduct from "./adminForm/AdminEditProduct";
 import OrderPageContext from "../../../context/OrderPageContext";
 import { useContext } from "react";
-import { HiCursorClick } from "react-icons/hi";
-
+import HintMessage from "../../HintMessage";
 
 export default function AdminPanel() {
   const { selectedTab, isCardSelected } = useContext(OrderPageContext)
 
-  return (
-    <AdminPanelStyled>
-      {selectedTab === "addProduct" && <AdminAddProduct />}
-      {(selectedTab === "editProduct" && isCardSelected ) && <AdminEditProduct />}
-      {(selectedTab === "editProduct" && !isCardSelected ) && <div className="hintMessage">Cliquer sur un produit du menu pour le modifier <HiCursorClick /></div>}
-    </AdminPanelStyled>
-  )
+  const adminPanelContent = () => {
+    switch (selectedTab) {
+      case "addProduct":
+        return <AdminAddProduct />;
+      case "editProduct":
+        return isCardSelected ? <AdminEditProduct /> : <HintMessage />;
+      default:
+        return null;
+    }
+  };
+
+  return <AdminPanelStyled>{adminPanelContent()}</AdminPanelStyled>;
 }
 
 const AdminPanelStyled = styled.div`
@@ -29,14 +33,5 @@ const AdminPanelStyled = styled.div`
   padding-bottom: 48px;
   height: 240px;
 
-  .hintMessage {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-family: "Amatic SC", cursive;
-    color: #747b91;
-    height: 100%;
-    column-gap: 10px;
-  }
 `;
 
