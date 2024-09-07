@@ -7,16 +7,15 @@ import defaultImage from "/images/coming-soon.png";
 import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, setMenu, setIsCollapsed, setSelectedTab, setUpdatedProduct, isCardSelected, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef} = useContext(OrderPageContext)
+    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef} = useContext(OrderPageContext)
 
     const handleSelectedCard = async (e, id) => {
         e.stopPropagation();
         const copyMenu = [...menu];
         const cardSelected = copyMenu.find((cardMenu) => cardMenu.id === id);
         setSelectedTab("editProduct");
-        setSelectedCard(cardSelected)
+        setSelectedCard(cardSelected);
         setIsCardSelected(true);
-        console.log('isCardSelected', isCardSelected)
         await setUpdatedProduct(cardSelected);
         setIsCollapsed(false);
         inputTitleRef.current.focus();
@@ -24,9 +23,7 @@ export default function Menu() {
 
     const handleDeleteCard = (e, id) => {
         e.stopPropagation();
-        const copyMenu = [...menu];
-        const menuFiltered = copyMenu.filter((cardMenu) => cardMenu.id !== id);
-        setMenu(menuFiltered);
+        deleteCard(id);
         if (selectedCard.id === id){
         setUpdatedProduct(EMPTY_PRODUCT);
         setIsCardSelected(false);}

@@ -4,16 +4,19 @@ import TextInput from "../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { useContext } from "react";
 import OrderPageContext from "../../../../context/OrderPageContext";
+import { getAdminInputsConfig } from "./getAdminInputsConfig";
 
-export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
-  const { updatedProduct, selectedTab, isCardSelected, inputTitleRef } = useContext(OrderPageContext);
+export default function AdminForm({ handleSubmit, isSubmitted, handleChange, value }) {
+  const { selectedTab, isCardSelected, inputTitleRef } = useContext(OrderPageContext);
+  const inputs = getAdminInputsConfig;
+  
   return (
     <AdminFormStyled className="form" onSubmit={handleSubmit}>
       {inputs.map((input) => (
         <TextInput
         key={input.key}
         name={input.name}
-        value={selectedTab === "editProduct"? updatedProduct[input.name] :""}
+        value={value ? value[input.name] : ""}/* {selectedTab === "editProduct"? updatedProduct[input.name] :""} */
         placeholder={input.placeholder}
         Icon={input.Icon}
         onChange={handleChange}

@@ -4,7 +4,7 @@ import PrimaryButton from "./PrimaryButton";0
 export default function CardInfos({ title, description, version }) {
 
     const handleAddProduct = (e) => {
-        e.stopPropagation(); // Empêche la sélection de la carte lors du clic sur le bouton Ajouter
+        e.stopPropagation();
     };
 
     return <CardInfosStyled>

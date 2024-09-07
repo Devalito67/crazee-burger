@@ -11,11 +11,37 @@ export default function OrderPage() {
   const [selectedTab, setSelectedTab] = useState("addProduct");
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [menu, setMenu] = useState(fakeMenu2);
-  const [ selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState({});
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isCardSelected, setIsCardSelected] = useState(false)
   const [updatedProduct, setUpdatedProduct] = useState(EMPTY_PRODUCT);
   const inputTitleRef = useRef();
+
+  const updateCard = (idToUpdate) => {
+    setMenu((prevMenu) => {
+      const menuCardIndex = prevMenu.findIndex((product) => product.id === idToUpdate.id);
+      const updatedMenu = [...prevMenu];
+      updatedMenu[menuCardIndex] = idToUpdate;
+      return updatedMenu;
+    });
+  }
+
+  const deleteCard = (idToDelete) => {
+    setMenu((prevMenu) => {
+      const menuFiltered = prevMenu.filter((cardMenu) => cardMenu.id !== idToDelete);
+      return menuFiltered;
+    });
+  };
+
+  const createCard = () => {
+    const updatedProduct = {
+      ...newProduct, id: crypto.randomUUID()
+    }
+
+    const copyMenu = [updatedProduct, ...menu];
+    setMenu(copyMenu);
+  }
+
   const orderPageContextValue = {
     isAdmin,
     setIsAdmin,
@@ -33,7 +59,10 @@ export default function OrderPage() {
     setIsCardSelected,
     updatedProduct,
     setUpdatedProduct,
-    inputTitleRef
+    inputTitleRef,
+    createCard,
+    updateCard,
+    deleteCard
   }
 
   return (
