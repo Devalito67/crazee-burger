@@ -6,24 +6,24 @@ import { useContext } from "react";
 import OrderPageContext from "../../../../context/OrderPageContext";
 import { getAdminInputsConfig } from "./getAdminInputsConfig";
 
-export default function AdminForm({ handleSubmit, isSubmitted, handleChange, value }) {
+export default function AdminForm({ onSubmit, isSubmitted, onChange, value }) {
   const { selectedTab, isCardSelected, inputTitleRef } = useContext(OrderPageContext);
   const inputs = getAdminInputsConfig;
-  
+
   return (
-    <AdminFormStyled className="form" onSubmit={handleSubmit}>
+    <AdminFormStyled className="form" onSubmit={onSubmit}>
       {inputs.map((input) => (
         <TextInput
-        key={input.key}
-        name={input.name}
-        value={value ? value[input.name] : ""}/* {selectedTab === "editProduct"? updatedProduct[input.name] :""} */
-        placeholder={input.placeholder}
-        Icon={input.Icon}
-        onChange={handleChange}
-        version="inputFormStyle"
-        ref={ input.name === "title" ? inputTitleRef : null}/>
+          key={input.key}
+          name={input.name}
+          value={value ? value[input.name] : ""}
+          placeholder={input.placeholder}
+          Icon={input.Icon}
+          onChange={onChange}
+          version="inputFormStyle"
+          ref={input.name === "title" ? inputTitleRef : null} />
       ))}
-      {(selectedTab === "addProduct") && <div><PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle"/>{isSubmitted && <SubmitMessage />}</div>}
+      {(selectedTab === "addProduct") && <div><PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle" />{isSubmitted && <SubmitMessage />}</div>}
       {(selectedTab === "editProduct" && isCardSelected) && <div className="hintFormMessage"><p>Cliquer sur un produit du menu pour le modifier <span>en temps réel</span></p></div>}
     </AdminFormStyled>
   )

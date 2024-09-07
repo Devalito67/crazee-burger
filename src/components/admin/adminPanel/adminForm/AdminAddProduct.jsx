@@ -31,7 +31,7 @@ export default function AdminAddProduct() {
   return (
     <AdminAddProductStyled>
       <AdminImagePreview imageSource={newProduct.imageSource} />
-      <AdminForm handleSubmit={handleFormSubmit} isSubmitted={isSubmitted} handleChange={handleInputChange} value ={newProduct}/>
+      <AdminForm onSubmit={handleFormSubmit} isSubmitted={isSubmitted} onChange={handleInputChange} value={newProduct} />
     </AdminAddProductStyled>
   )
 }
