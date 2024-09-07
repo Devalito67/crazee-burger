@@ -5,13 +5,13 @@ import { useContext } from "react"
 import OrderPageContext from "../../context/OrderPageContext"
 
 export default function Card({ imageSource, title, price, id, onDeleteClick, onCardClick}) {
-    const { isAdmin, selectedCard, isCardSelected } = useContext(OrderPageContext)
+    const { isAdmin, selectedCard} = useContext(OrderPageContext)
 
     return (
         <CardStyled id={id} onClick={isAdmin ? onCardClick : null} className={`${(isAdmin && id !== selectedCard.id) ? "adminCardStyle" : ""} ${(isAdmin && id === selectedCard.id) ? "selectedCardStyle" : ""}`} >
             {isAdmin && <button className="deleteIcon" onClick={onDeleteClick}><TiDelete /></button>}
             <div className="picture-card">
-                <img src={isCardSelected ? selectedCard.imageSource : imageSource} alt={title} />
+                <img src={imageSource} alt={title} />
             </div>
             <CardInfos title={title} description={price} version= {`${(isAdmin && id === selectedCard.id) ? "selectedCardButtonStyle" : ""}`}/>
         </CardStyled>
