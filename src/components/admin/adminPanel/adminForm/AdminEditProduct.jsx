@@ -11,11 +11,11 @@ export default function AdminEditProduct() {
     const { name, value } = e.target;
 
     setUpdatedProduct((prevState) => {
-      const updatedProduct = {
+      const productToUpdate = {
         ...prevState,
         [name]: value,
       };
-      setSelectedCard(updatedProduct);
+      setSelectedCard(productToUpdate);
 
       setMenu((prevMenu) => {
         const menuCardIndex = prevMenu.findIndex(
