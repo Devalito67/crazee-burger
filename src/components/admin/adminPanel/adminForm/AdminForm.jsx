@@ -6,7 +6,7 @@ import { useContext } from "react";
 import OrderPageContext from "../../../../context/OrderPageContext";
 
 export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
-  const { updatedProduct, selectedTab, isCardSelected } = useContext(OrderPageContext);
+  const { updatedProduct, selectedTab, isCardSelected, inputTitleRef } = useContext(OrderPageContext);
   return (
     <AdminFormStyled className="form" onSubmit={handleSubmit}>
       {inputs.map((input) => (
@@ -17,7 +17,8 @@ export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleCha
         placeholder={input.placeholder}
         Icon={input.Icon}
         onChange={handleChange}
-        version="inputFormStyle"/>
+        version="inputFormStyle"
+        ref={ input.name === "title" ? inputTitleRef : null}/>
       ))}
       {(selectedTab === "addProduct") && <div><PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle"/>{isSubmitted && <SubmitMessage />}</div>}
       {(selectedTab === "editProduct" && isCardSelected) && <div className="hintFormMessage"><p>Cliquer sur un produit du menu pour le modifier <span>en temps réel</span></p></div>}

@@ -1,13 +1,14 @@
+import React from "react"
 import styled, { css } from "styled-components"
 
-export default function TextInput({ Icon, value, onChange, placeholder, version="normalStyle", ...extraProps }) {
+const TextInput = React.forwardRef(({ Icon, value, onChange, placeholder, version="normalStyle", ...extraProps }, ref) => {
     return (
         <TextInputStyled version={version}>
             <div className="icon">{Icon && Icon}</div>
-            <input value={value} onChange={onChange} type="text" placeholder={placeholder} {...extraProps} />
+            <input ref={ref} value={value} onChange={onChange} type="text" placeholder={placeholder} {...extraProps} />
         </TextInputStyled>
     )
-}
+})
 
 const TextInputStyled = styled.div `
       display: flex;
@@ -56,3 +57,5 @@ const textInputStyles = {
   normalStyle,
   inputFormStyle
 }
+
+export default TextInput

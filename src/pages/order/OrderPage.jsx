@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import Navbar from "../../components/reusable-ui/Navbar"
 import Main from "./Main"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import OrderPageContext from "../../context/OrderPageContext"
 import { fakeMenu2 } from "../../data__mocked/fakeMenu"
 import { EMPTY_PRODUCT } from "../../enums/product"
@@ -15,6 +15,7 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isCardSelected, setIsCardSelected] = useState(false)
   const [updatedProduct, setUpdatedProduct] = useState(EMPTY_PRODUCT);
+  const inputTitleRef = useRef();
   const orderPageContextValue = {
     isAdmin,
     setIsAdmin,
@@ -31,7 +32,8 @@ export default function OrderPage() {
     isCardSelected,
     setIsCardSelected,
     updatedProduct,
-    setUpdatedProduct
+    setUpdatedProduct,
+    inputTitleRef
   }
 
   return (

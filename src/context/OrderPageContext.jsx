@@ -24,6 +24,8 @@ const OrderPageContext = createContext({
 
   updatedProduct: {},
   setUpdatedProduct: () => {},
+
+  inputTitleRef: {}
 });
 
 export default OrderPageContext;
