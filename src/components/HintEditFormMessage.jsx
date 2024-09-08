@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function HintEditFormMessage() {
    return <HintEditFormMessageStyled>
-      Cliquer sur un produit du menu pour le modifier <span>en temps réel</span>
+      <p>Cliquer sur un produit du menu pour le modifier <span>en temps réel</span></p>
     </HintEditFormMessageStyled>
   }
 
