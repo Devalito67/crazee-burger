@@ -2,10 +2,13 @@ import styled from "styled-components";
 import { useContext } from "react";
 import AdminForm from "./AdminForm"; import AdminImagePreview from "./AdminImagePreview";
 import OrderPageContext from "../../../../context/OrderPageContext";
+import { getAdminInputsConfig } from "./getAdminInputsConfig";
+import HintEditFormMessage from "../../../HintEditFormMessage";
 
 export default function AdminEditProduct() {
-  const { updatedProduct, setUpdatedProduct, setSelectedCard, updateCard } = useContext(OrderPageContext);
-
+  const { updatedProduct, setUpdatedProduct, setSelectedCard, updateCard, isCardSelected, inputTitleRef } = useContext(OrderPageContext);
+  const inputs = getAdminInputsConfig;
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUpdatedProduct((prevState) => {
@@ -22,7 +25,12 @@ export default function AdminEditProduct() {
   return (
     <AdminEditProductStyled>
       <AdminImagePreview imageSource={updatedProduct.imageSource} />
-      <AdminForm onChange={handleInputChange} value={updatedProduct} />
+      <AdminForm
+        onChange={handleInputChange}
+        value={updatedProduct}
+        inputs={inputs}
+        Footer={isCardSelected && <HintEditFormMessage />}
+        ref={inputTitleRef} />
     </AdminEditProductStyled>
   )
 }

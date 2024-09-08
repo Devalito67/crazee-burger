@@ -4,10 +4,13 @@ import { useContext, useState } from "react";
 import AdminForm from "./AdminForm";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
 import AdminImagePreview from "./AdminImagePreview";
+import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import { getAdminInputsConfig } from "./getAdminInputsConfig";
 
 export default function AdminAddProduct() {
-  const { newProduct, setNewProduct, createCard } = useContext(OrderPageContext);
+  const { newProduct, setNewProduct, createCard, inputTitleRef } = useContext(OrderPageContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const inputs = getAdminInputsConfig;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -29,9 +32,16 @@ export default function AdminAddProduct() {
   }
 
   return (
-    <AdminAddProductStyled>
+    <AdminAddProductStyled >
       <AdminImagePreview imageSource={newProduct.imageSource} />
-      <AdminForm onSubmit={handleFormSubmit} isSubmitted={isSubmitted} onChange={handleInputChange} value={newProduct} />
+      <AdminForm
+      inputs = {inputs}
+      onSubmit={handleFormSubmit}
+      isSubmitted={isSubmitted}
+      onChange={handleInputChange}
+      value={newProduct}
+      Footer={<PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle" />}
+      ref={inputTitleRef}/>
     </AdminAddProductStyled>
   )
 }
