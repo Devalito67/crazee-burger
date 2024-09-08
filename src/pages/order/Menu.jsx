@@ -48,8 +48,10 @@ export default function Menu() {
 
 const MenuStyled = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     background: #F5F5F7;
+    width: 100%;
     box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
     padding: 50px 50px 150px;
     grid-row-gap: 60px;

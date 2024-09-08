@@ -4,6 +4,7 @@ import Admin from "../../components/admin/Admin";
 import { useContext } from "react";
 import OrderPageContext from "../../context/OrderPageContext";
 import EmptyMenuMessage from "../../components/EmptyMenuMessage";
+import Basket from "../../components/Basket";
 
 export default function Main() {
   const { isAdmin, menu, resetMenu } = useContext(OrderPageContext)
@@ -30,6 +31,7 @@ export default function Main() {
 
   return (
     <MainStyled>
+      <Basket />
       {menu && menu.length === 0 ? emptyMenuMessage(isAdmin) : <Menu />}
       {isAdmin && <Admin />}
     </MainStyled>
@@ -41,4 +43,5 @@ const MainStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
   flex: 1;
   overflow: auto;
+  display: flex;
 `;
