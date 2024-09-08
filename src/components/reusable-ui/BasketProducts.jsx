@@ -25,5 +25,11 @@ export default function BasketProducts() {
 }
 
 const BasketProductsStyled = styled.div`
-  
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    align-content: center;
+    flex-wrap: wrap;
 `;
