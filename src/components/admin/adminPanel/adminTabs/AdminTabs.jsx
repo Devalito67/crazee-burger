@@ -17,7 +17,9 @@ export default function AdminTabs() {
     const handleAdminTabClick = async (keyTab) => {
         await setSelectedTab(keyTab);
         await setIsCollapsed(false);
-        inputTitleRef.current.focus();
+        if (inputTitleRef.current) {
+            inputTitleRef.current.focus();
+          }
     };
 
     return <AdminTabsStyled>
