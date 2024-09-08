@@ -1,0 +1,39 @@
+import styled from "styled-components";
+
+export default function ProductInfos({ title, description}) {
+
+    return <ProductInfosStyled>
+        <h2>{title}</h2>
+        <div className="card-description">
+            <p>{description}</p>
+        </div>
+    </ProductInfosStyled>
+}
+const ProductInfosStyled = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 5px 5px;
+    flex-grow: 1;
+        h2 {
+            font-family: "Amatic SC", cursive;
+            font-size: 36px;     
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        .card-description {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: -7.5px;
+            flex-grow: 1;
+            p {
+                color: #ffa01b;
+                font-size: 16px;
+                flex: 1;
+            }
+        }
+`;

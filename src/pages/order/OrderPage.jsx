@@ -47,8 +47,8 @@ export default function OrderPage() {
     setMenu(fakeMenu2);
     setSelectedCard({})
   }
-  const addProduct = (idCard) => {
-    const basketCopy = [idCard,...basket];
+  const addProduct = (productToAdd) => {
+    const basketCopy = [productToAdd, ...basket];
     setBasket(basketCopy);
     console.log(basket);
   }
