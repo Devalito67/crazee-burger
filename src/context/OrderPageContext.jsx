@@ -29,7 +29,9 @@ const OrderPageContext = createContext({
 
   createCard : () => {},
   updateCard : () => {},
-  deleteCard : () => {}
+  deleteCard : () => {},
+
+  resetMenu: () => {},
 });
 
 export default OrderPageContext;

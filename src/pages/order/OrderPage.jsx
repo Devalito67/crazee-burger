@@ -42,6 +42,11 @@ export default function OrderPage() {
     setMenu(copyMenu);
   }
 
+  const resetMenu = () => {
+    setMenu(fakeMenu2);
+    setSelectedCard({})
+  }
+
   const orderPageContextValue = {
     isAdmin,
     setIsAdmin,
@@ -62,7 +67,8 @@ export default function OrderPage() {
     inputTitleRef,
     createCard,
     updateCard,
-    deleteCard
+    deleteCard,
+    resetMenu
   }
 
   return (

@@ -3,14 +3,13 @@ import Menu from "./Menu"
 import Admin from "../../components/admin/Admin";
 import { useContext } from "react";
 import OrderPageContext from "../../context/OrderPageContext";
-import { fakeMenu2 } from "../../data__mocked/fakeMenu";
 import EmptyMenuMessage from "../../components/EmptyMenuMessage";
 
 export default function Main() {
-  const { isAdmin, menu, setMenu } = useContext(OrderPageContext)
+  const { isAdmin, menu, resetMenu } = useContext(OrderPageContext)
 
   const handleInitializeMenuClick = () => {
-    setMenu(fakeMenu2)
+    resetMenu()
   }
 
   const emptyMenuMessage = (isAdmin) => {
