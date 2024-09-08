@@ -16,6 +16,7 @@ export default function OrderPage() {
   const [isCardSelected, setIsCardSelected] = useState(false)
   const [updatedProduct, setUpdatedProduct] = useState(EMPTY_PRODUCT);
   const inputTitleRef = useRef();
+  const [basket, setBasket] = useState([])
 
   const updateCard = (idToUpdate) => {
     setMenu((prevMenu) => {
@@ -46,6 +47,11 @@ export default function OrderPage() {
     setMenu(fakeMenu2);
     setSelectedCard({})
   }
+  const addProduct = (idCard) => {
+    const basketCopy = [idCard,...basket];
+    setBasket(basketCopy);
+    console.log(basket);
+  }
 
   const orderPageContextValue = {
     isAdmin,
@@ -68,7 +74,10 @@ export default function OrderPage() {
     createCard,
     updateCard,
     deleteCard,
-    resetMenu
+    resetMenu,
+    addProduct,
+    basket,
+    setBasket,
   }
 
   return (

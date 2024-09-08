@@ -1,17 +1,13 @@
 import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
 
-export default function CardInfos({ title, description, version }) {
-
-    const handleAddProduct = (e) => {
-        e.stopPropagation();
-    };
+export default function CardInfos({ title, description, version, onClick }) {
 
     return <CardInfosStyled>
         <h2>{title}</h2>
         <div className="card-description">
             <p>{description}</p>
-            <PrimaryButton version={version ? version : "cardAddButtonStyle"} onClick={(e) => handleAddProduct(e)} label="Ajouter" />
+            <PrimaryButton version={version ? version : "cardAddButtonStyle"} onClick={onClick} label="Ajouter" />
         </div>
     </CardInfosStyled>
 }

@@ -7,7 +7,7 @@ import defaultImage from "/images/coming-soon.png";
 import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef} = useContext(OrderPageContext)
+    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef, addProduct} = useContext(OrderPageContext)
 
     const handleSelectedCard = async (e, id) => {
         e.stopPropagation();
@@ -29,6 +29,12 @@ export default function Menu() {
         setIsCardSelected(false);}
     }
 
+    const handleAddProduct = (e, id) => {
+        e.stopPropagation();
+        const cardSelected = menu.find((cardMenu) => cardMenu.id === id);
+        addProduct(cardSelected);
+    };
+
     return (
         <MenuStyled>
             {menu && menu.map(({ id, imageSource, title, price }) => {
@@ -40,6 +46,7 @@ export default function Menu() {
                     price={price ? formatPrice(price) : formatPrice(0)}
                     onDeleteClick={(e) => handleDeleteCard(e, id)}
                     onCardClick={(e) => handleSelectedCard(e, id)}
+                    onAddProductClick={(e) => handleAddProduct(e, id)}
                 />
             })}
         </MenuStyled>

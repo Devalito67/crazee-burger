@@ -32,6 +32,11 @@ const OrderPageContext = createContext({
   deleteCard : () => {},
 
   resetMenu: () => {},
+
+  addProduct : () => {},
+
+  basket: [],
+  setBasket: () => {},
 });
 
 export default OrderPageContext;
