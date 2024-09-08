@@ -4,16 +4,23 @@ import AdminAddProduct from "./adminForm/AdminAddProduct";
 import AdminEditProduct from "./adminForm/AdminEditProduct";
 import OrderPageContext from "../../../context/OrderPageContext";
 import { useContext } from "react";
+import HintMessage from "../../HintMessage";
 
 export default function AdminPanel() {
-  const {selectedTab} = useContext(OrderPageContext)
-  
-  return (
-    <AdminPanelStyled>
-      {selectedTab === "addProduct" && <AdminAddProduct/>}
-      {selectedTab === "editProduct" && <AdminEditProduct/>}
-    </AdminPanelStyled>
-  )
+  const { selectedTab, isCardSelected } = useContext(OrderPageContext)
+
+  const adminPanelContent = () => {
+    switch (selectedTab) {
+      case "addProduct":
+        return <AdminAddProduct />;
+      case "editProduct":
+        return isCardSelected ? <AdminEditProduct /> : <HintMessage />;
+      default:
+        return null;
+    }
+  };
+
+  return <AdminPanelStyled>{adminPanelContent()}</AdminPanelStyled>;
 }
 
 const AdminPanelStyled = styled.div`
@@ -24,4 +31,7 @@ const AdminPanelStyled = styled.div`
   padding-top: 30px;
   padding-left: 70px;
   padding-bottom: 48px;
+  height: 240px;
+
 `;
+

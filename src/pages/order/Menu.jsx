@@ -4,12 +4,29 @@ import { useContext } from "react";
 import { formatPrice } from "../../utils/maths";
 import OrderPageContext from "../../context/OrderPageContext";
 import defaultImage from "/images/coming-soon.png";
+import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, setMenu, isAdmin } = useContext(OrderPageContext)
-    const handleDeleteCard = (id) => {
-        const menuFiltered = menu.filter((cardMenu) => cardMenu.id !== id);
-        setMenu(menuFiltered)
+    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef} = useContext(OrderPageContext)
+
+    const handleSelectedCard = async (e, id) => {
+        e.stopPropagation();
+        const copyMenu = [...menu];
+        const cardSelected = copyMenu.find((cardMenu) => cardMenu.id === id);
+        setSelectedTab("editProduct");
+        setSelectedCard(cardSelected);
+        setIsCardSelected(true);
+        await setUpdatedProduct(cardSelected);
+        setIsCollapsed(false);
+        inputTitleRef.current.focus();
+    }
+
+    const handleDeleteCard = (e, id) => {
+        e.stopPropagation();
+        deleteCard(id);
+        if (selectedCard.id === id){
+        setUpdatedProduct(EMPTY_PRODUCT);
+        setIsCardSelected(false);}
     }
 
     return (
@@ -17,11 +34,12 @@ export default function Menu() {
             {menu && menu.map(({ id, imageSource, title, price }) => {
                 return <Card
                     key={id}
+                    id={id}
                     imageSource={imageSource ? imageSource : defaultImage}
                     title={title ? title : '\u00A0'}
                     price={price ? formatPrice(price) : formatPrice(0)}
-                    isAdmin={isAdmin}
-                    onClick={() => handleDeleteCard(id)}
+                    onDeleteClick={(e) => handleDeleteCard(e, id)}
+                    onCardClick={(e) => handleSelectedCard(e, id)}
                 />
             })}
         </MenuStyled>

@@ -1,18 +1,29 @@
 import styled from "styled-components";
 import SubmitMessage from "./SubmitMessage";
 import TextInput from "../../../reusable-ui/TextInput";
-import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import React from "react";
 
-export default function AdminForm({ inputs, handleSubmit, isSubmitted, handleChange }) {
+const AdminForm = React.forwardRef(({ onSubmit, isSubmitted, onChange, value, Footer, inputs}, ref) => {
+
   return (
-    <AdminFormStyled className="form" onSubmit={handleSubmit}>
+    <AdminFormStyled className="form" onSubmit={onSubmit}>
       {inputs.map((input) => (
-        <TextInput key={input.key} name={input.name} placeholder={input.placeholder} Icon={input.Icon} onChange={handleChange} version="inputFormStyle"/>
+        <TextInput
+          key={input.key}
+          name={input.name}
+          value={value ? value[input.name] : ""}
+          placeholder={input.placeholder}
+          Icon={input.Icon}
+          onChange={onChange}
+          version="inputFormStyle"
+          ref={input.name === "title" ? ref : undefined} />
       ))}
-      <div><PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle"/>{isSubmitted && <SubmitMessage />}</div>
+      <div>{Footer}{isSubmitted && <SubmitMessage />}</div>
     </AdminFormStyled>
   )
-}
+})
+
+AdminForm.displayName = "Adminform"
 
 const AdminFormStyled = styled.form`
     display: grid;
@@ -24,3 +35,5 @@ const AdminFormStyled = styled.form`
         align-items: center;
       }
 `;
+
+export default AdminForm

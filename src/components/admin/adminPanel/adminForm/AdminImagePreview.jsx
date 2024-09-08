@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function AdminImagePreview({imageSource}) {
-    return <AdminImagePreviewStyled>
-        {imageSource ? <img src={imageSource} alt="imageProduct preview" /> : <div className = "emptyImage">
-          Aucune Image</div>}
-    </AdminImagePreviewStyled>
+export default function AdminImagePreview({ imageSource }) {
+  return <AdminImagePreviewStyled>
+    {imageSource ? <img src={imageSource} alt="imageProduct preview" /> : <div className="emptyImage">
+      Aucune Image</div>}
+  </AdminImagePreviewStyled>
 }
 
 const AdminImagePreviewStyled = styled.div`

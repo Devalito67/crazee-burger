@@ -2,13 +2,11 @@ import { BsPersonCircle } from "react-icons/bs"
 import { Link, useParams } from "react-router-dom"
 import styled from "styled-components"
 
-
 export default function Signin() {
     const { username } = useParams()
-   
 
     return (
-        <SigninStyled>   
+        <SigninStyled>
             <div className="infos">
                 <p>Hey, <b>{username}</b></p>
                 <Link to="/"><button><small>Se déconnecter</small></button></Link>

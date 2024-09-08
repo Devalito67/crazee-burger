@@ -1,31 +1,20 @@
 import styled from "styled-components";
 import OrderPageContext from "../../../../context/OrderPageContext";
 import { useContext, useState } from "react";
-import { getAdminInputsConfig } from "./getAdminInputsConfig";
 import AdminForm from "./AdminForm";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
 import AdminImagePreview from "./AdminImagePreview";
+import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import { getAdminInputsConfig } from "./getAdminInputsConfig";
 
 export default function AdminAddProduct() {
-  const { menu, setMenu } = useContext(OrderPageContext);
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const { newProduct, setNewProduct, createCard, inputTitleRef } = useContext(OrderPageContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const inputs = getAdminInputsConfig;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    const updatedProduct = {
-      id: crypto.randomUUID(),
-      imageSource: e.target.imageSource.value,
-      title: e.target.title.value,
-      price: e.target.price.value,
-    };
-
-    setNewProduct(updatedProduct);
-    const copyMenu = [updatedProduct, ...menu];
-    setMenu(copyMenu);
-    e.target.reset();
+    createCard();
     setNewProduct(EMPTY_PRODUCT)
     displaySubmitMessage();
   };
@@ -43,9 +32,16 @@ export default function AdminAddProduct() {
   }
 
   return (
-    <AdminAddProductStyled>
+    <AdminAddProductStyled >
       <AdminImagePreview imageSource={newProduct.imageSource} />
-      <AdminForm inputs={inputs} handleSubmit={handleFormSubmit} isSubmitted={isSubmitted} handleChange={handleInputChange} />
+      <AdminForm
+      inputs = {inputs}
+      onSubmit={handleFormSubmit}
+      isSubmitted={isSubmitted}
+      onChange={handleInputChange}
+      value={newProduct}
+      Footer={<PrimaryButton label="Ajouter un nouveau produit au menu" version="successButtonStyle" />}
+      ref={inputTitleRef}/>
     </AdminAddProductStyled>
   )
 }

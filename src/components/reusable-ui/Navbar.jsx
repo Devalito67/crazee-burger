@@ -3,11 +3,9 @@ import Logo from "./Logo";
 import NavbarRightSide from "../NavbarRightSide";
 
 export default function Navbar() {
-
-
   return (
     <NavbarStyled>
-      <Logo className="logo" onClick={() => window.location.reload()}/>
+      <Logo className="logo" onClick={() => window.location.reload()} />
       <NavbarRightSide />
     </NavbarStyled>
   )
