@@ -4,7 +4,8 @@ import Admin from "../../components/admin/Admin";
 import { useContext } from "react";
 import OrderPageContext from "../../context/OrderPageContext";
 import EmptyMenuMessage from "../../components/EmptyMenuMessage";
-import Basket from "../../components/Basket";
+import Basket from "../../components/Basket/Basket";
+
 
 export default function Main() {
   const { isAdmin, menu, resetMenu } = useContext(OrderPageContext)
