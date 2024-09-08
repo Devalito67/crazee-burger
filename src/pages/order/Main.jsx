@@ -33,8 +33,10 @@ export default function Main() {
   return (
     <MainStyled>
       <Basket />
+      <div className="menu-and-admin">
       {menu && menu.length === 0 ? emptyMenuMessage(isAdmin) : <Menu />}
       {isAdmin && <Admin />}
+      </div>
     </MainStyled>
   )
 }
@@ -45,4 +47,10 @@ const MainStyled = styled.div`
   flex: 1;
   overflow: auto;
   display: flex;
+    .menu-and-admin {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+      display: flex;
+    }
 `;

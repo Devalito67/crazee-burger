@@ -51,5 +51,5 @@ display: flex;
 column-gap: 20px;
 background-color: white;
 height: 160px;
-width: 65%;
+width: fit-content;
 `;
