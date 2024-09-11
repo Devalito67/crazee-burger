@@ -10,14 +10,14 @@ export default function BasketProducts() {
 
   return (
     <BasketProductsStyled>
-            {basket && basket.map(({ id, imageSource, title, price/* , quantity */ }) => {
+            {basket && basket.map(({ id, imageSource, title, price, quantity }) => {
                 return <Product
                     key={id}
                     id={id}
                     imageSource={imageSource ? imageSource : defaultImage}
                     title={title}
                     price={price ? formatPrice(price) : formatPrice(0)}
-                   /*  quantity={quantity} */
+                    quantity={quantity}
                 />
             })}
         </BasketProductsStyled>

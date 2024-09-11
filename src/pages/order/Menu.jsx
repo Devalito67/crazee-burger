@@ -7,7 +7,7 @@ import defaultImage from "/images/coming-soon.png";
 import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef, addProduct} = useContext(OrderPageContext)
+    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef, addProduct, basket, setBasket } = useContext(OrderPageContext)
 
     const handleSelectedCard = async (e, id) => {
         e.stopPropagation();
@@ -24,15 +24,23 @@ export default function Menu() {
     const handleDeleteCard = (e, id) => {
         e.stopPropagation();
         deleteCard(id);
-        if (selectedCard.id === id){
-        setUpdatedProduct(EMPTY_PRODUCT);
-        setIsCardSelected(false);}
+        if (selectedCard.id === id) {
+            setUpdatedProduct(EMPTY_PRODUCT);
+            setIsCardSelected(false);
+        }
     }
 
     const handleAddProduct = (e, id) => {
         e.stopPropagation();
         const cardSelected = menu.find((cardMenu) => cardMenu.id === id);
-        addProduct(cardSelected);
+        const basketCopy = [...basket];
+        const basketProductIndex = basketCopy.findIndex((productBasket) => productBasket.id === cardSelected.id);
+        if (basketProductIndex !== -1) {
+            basketCopy[basketProductIndex].quantity += 1;
+            setBasket(basketCopy);
+        } else {
+            addProduct({ ...cardSelected, quantity: 1 });
+        }
     };
 
     return (

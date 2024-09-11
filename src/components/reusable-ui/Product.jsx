@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import ProductInfos from "./ProductInfos"
 
-export default function Product({ imageSource, title, price, id/* , quantity */}) {
+export default function Product({ imageSource, title, price, id, quantity }) {
 
     return (
         <ProductStyled
@@ -12,7 +12,7 @@ export default function Product({ imageSource, title, price, id/* , quantity */}
             <ProductInfos
                 title={title}
                 description={price}
-                /* quantity={quantity} */
+                quantity={quantity} 
             />
         </ProductStyled>
     )
