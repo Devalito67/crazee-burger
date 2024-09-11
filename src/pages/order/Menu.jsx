@@ -28,7 +28,12 @@ export default function Menu() {
             setUpdatedProduct(EMPTY_PRODUCT);
             setIsCardSelected(false);
         }
-    }
+        console.log('id', id)
+        const productIndex = basket.findIndex((product) => product.id === id);
+        console.log('productIndex', productIndex)
+        const updateBasket = basket.filter((product) => product.id !== basket[productIndex].id)
+        setBasket(updateBasket)
+    };
 
     const handleAddProduct = (e, id) => {
         e.stopPropagation();
@@ -40,7 +45,7 @@ export default function Menu() {
             setBasket(basketCopy);
         } else {
             addProduct({ ...cardSelected, quantity: 1 });
-        };
+        }
     }
         return (
             <MenuStyled>
