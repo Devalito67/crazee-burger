@@ -35,5 +35,6 @@ const BasketStyled = styled.div`
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2) inset;
     .basketMain {
         flex :1;
+        overflow: auto;
     }
 `;
