@@ -1,7 +1,17 @@
 import styled from "styled-components"
 import ProductInfos from "./ProductInfos"
+import { MdDeleteForever } from "react-icons/md"
+import { useContext } from "react"
+import OrderPageContext from "../../context/OrderPageContext"
 
 export default function Product({ imageSource, title, price, id, quantity }) {
+    const { setBasket, basket } = useContext(OrderPageContext)
+    const onProductDelete = (e, id) => {
+        e.preventDefault();
+        const updateBasket = basket.filter((product) => product.id !== id);
+        setBasket(updateBasket);
+    }
+
 
     return (
         <ProductStyled
@@ -12,8 +22,11 @@ export default function Product({ imageSource, title, price, id, quantity }) {
             <ProductInfos
                 title={title}
                 description={price}
-                quantity={quantity} 
+                quantity={quantity}
             />
+            <button className="delete-icon" onClick={(e) => onProductDelete(e, id)}>
+                <MdDeleteForever />
+            </button>
         </ProductStyled>
     )
 }
@@ -27,6 +40,8 @@ const ProductStyled = styled.div`
     align-items: center;
     justify-content: center;
     background-color: white;
+    position: relative;
+    overflow: hidden;
         .picture-card {
             height: 70px;
             width: 86px;
@@ -39,5 +54,33 @@ const ProductStyled = styled.div`
                 object-fit: contain;
             }
         }
+        &:hover {
+        cursor: pointer;
 
+        .delete-icon {
+            opacity: 1;
+        }
+    }
+        .delete-icon {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 0;
+        bottom: 0;
+        color: white;
+        background-color: #E25549;
+        font-size: 24px;
+        width: 76px;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+        &:hover {
+            color: black;
+        }
+        &:active {
+            color: white;
+        }
+    }
 `
