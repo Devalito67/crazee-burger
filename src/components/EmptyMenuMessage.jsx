@@ -21,6 +21,7 @@ const EmptyMenuMessageStyled = styled.div`
     color: #747B91;
     font-size: 36px;
     row-gap: 20px;
+    width: 100%;
     .messageContainer {
         text-align: center;
     }

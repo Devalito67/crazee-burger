@@ -7,7 +7,7 @@ import defaultImage from "/images/coming-soon.png";
 import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef} = useContext(OrderPageContext)
+    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef, addProduct, basket, setBasket, deleteProduct} = useContext(OrderPageContext)
 
     const handleSelectedCard = async (e, id) => {
         e.stopPropagation();
@@ -24,29 +24,45 @@ export default function Menu() {
     const handleDeleteCard = (e, id) => {
         e.stopPropagation();
         deleteCard(id);
-        if (selectedCard.id === id){
-        setUpdatedProduct(EMPTY_PRODUCT);
-        setIsCardSelected(false);}
+        if (selectedCard.id === id) {
+            setUpdatedProduct(EMPTY_PRODUCT);
+            setIsCardSelected(false);
+        }
+        const productIndex = basket.findIndex((product) => product.id === id);
+        deleteProduct(basket[productIndex].id)
+    };
+
+    const handleAddProduct = (e, id) => {
+        e.stopPropagation();
+        const cardSelected = menu.find((cardMenu) => cardMenu.id === id);
+        const basketCopy = [...basket];
+        const basketProductIndex= basket.findIndex((product) => product.id === cardSelected.id)
+        if (basketProductIndex !== -1) {
+            basketCopy[basketProductIndex].quantity += 1;
+            setBasket(basketCopy);
+        } else {
+            addProduct({ ...cardSelected, quantity: 1 });
+        }
+    }
+        return (
+            <MenuStyled>
+                {menu && menu.map(({ id, imageSource, title, price }) => {
+                    return <Card
+                        key={id}
+                        id={id}
+                        imageSource={imageSource ? imageSource : defaultImage}
+                        title={title ? title : '\u00A0'}
+                        price={price ? formatPrice(price) : formatPrice(0)}
+                        onDeleteClick={(e) => handleDeleteCard(e, id)}
+                        onCardClick={(e) => handleSelectedCard(e, id)}
+                        onAddProductClick={(e) => handleAddProduct(e, id)}
+                    />
+                })}
+            </MenuStyled>
+        )
     }
 
-    return (
-        <MenuStyled>
-            {menu && menu.map(({ id, imageSource, title, price }) => {
-                return <Card
-                    key={id}
-                    id={id}
-                    imageSource={imageSource ? imageSource : defaultImage}
-                    title={title ? title : '\u00A0'}
-                    price={price ? formatPrice(price) : formatPrice(0)}
-                    onDeleteClick={(e) => handleDeleteCard(e, id)}
-                    onCardClick={(e) => handleSelectedCard(e, id)}
-                />
-            })}
-        </MenuStyled>
-    )
-}
-
-const MenuStyled = styled.div`
+    const MenuStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     background: #F5F5F7;
@@ -55,4 +71,5 @@ const MenuStyled = styled.div`
     padding: 50px 50px 150px;
     grid-row-gap: 60px;
     justify-items: center;
+    overflow: auto;
 `;

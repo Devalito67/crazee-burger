@@ -4,16 +4,24 @@ import CardInfos from "./CardInfos"
 import { useContext } from "react"
 import OrderPageContext from "../../context/OrderPageContext"
 
-export default function Card({ imageSource, title, price, id, onDeleteClick, onCardClick }) {
+export default function Card({ imageSource, title, price, id, onDeleteClick, onCardClick, onAddProductClick }) {
     const { isAdmin, selectedCard } = useContext(OrderPageContext)
 
     return (
-        <CardStyled id={id} onClick={isAdmin ? onCardClick : null} className={`${(isAdmin && id !== selectedCard.id) ? "adminCardStyle" : ""} ${(isAdmin && id === selectedCard.id) ? "selectedCardStyle" : ""}`} >
+        <CardStyled
+            id={id}
+            onClick={isAdmin ? onCardClick : null}
+            className={`${(isAdmin && id !== selectedCard.id) ? "adminCardStyle" : ""} ${(isAdmin && id === selectedCard.id) ? "selectedCardStyle" : ""}`} >
             {isAdmin && <button className="deleteIcon" onClick={onDeleteClick}><TiDelete /></button>}
             <div className="picture-card">
                 <img src={imageSource} alt={title} />
             </div>
-            <CardInfos title={title} description={price} version={`${(isAdmin && id === selectedCard.id) ? "selectedCardButtonStyle" : ""}`} />
+            <CardInfos
+                title={title}
+                description={price}
+                version={`${(isAdmin && id === selectedCard.id) ? "selectedCardButtonStyle" : ""}`}
+                onClick={onAddProductClick}
+            />
         </CardStyled>
     )
 }
