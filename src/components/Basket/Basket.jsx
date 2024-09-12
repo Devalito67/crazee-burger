@@ -4,20 +4,16 @@ import BasketSection from "./BasketSection";
 import { useContext } from "react";
 import OrderPageContext from "../../context/OrderPageContext";
 import BasketProducts from "../reusable-ui/BasketProducts";
-import { formatPrice } from "../../utils/maths";
+import { basketAmount, formatPrice } from "../../utils/maths";
 
 export default function Basket() {
-    const { basket} = useContext(OrderPageContext)
-const basketProductsAmount = basket.map((product) => product.price * product.quantity )
-
-const basketTotal = basketProductsAmount.reduce(( total, productAmount) => {
-    return total + productAmount
-},0)
+    const { basket } = useContext(OrderPageContext)
+    const total = basketAmount(basket);
 
     return (
         <BasketStyled>
             <BasketSection className="basketHeader">
-                Total<span>{basket && basket.length === 0 ? formatPrice(0) : formatPrice(basketTotal) }</span>
+                Total<span>{basket && basket.length === 0 ? formatPrice(0) : formatPrice(total)}</span>
             </BasketSection>
             <div className="basketMain">{basket && basket.length === 0 ? <EmptyMenuMessage message="VOTRE COMMANDE EST VIDE." /> : <BasketProducts />}</div>
             <BasketSection className="basketFooter">

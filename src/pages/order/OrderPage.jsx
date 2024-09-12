@@ -18,6 +18,7 @@ export default function OrderPage() {
   const inputTitleRef = useRef();
   const [basket, setBasket] = useState([])
 
+
   const updateCard = (idToUpdate) => {
     setMenu((prevMenu) => {
       const menuCardIndex = prevMenu.findIndex((product) => product.id === idToUpdate.id);
@@ -50,8 +51,13 @@ export default function OrderPage() {
   const addProduct = (productToAdd) => {
     const basketCopy = [productToAdd, ...basket];
     setBasket(basketCopy);
-    console.log(basket);
   }
+
+  const deleteProduct = (idTodelete) => {
+    const updateBasket = basket.filter((product) => product.id !== idTodelete);
+    setBasket(updateBasket);
+  }
+  
 
   const orderPageContextValue = {
     isAdmin,
@@ -78,6 +84,7 @@ export default function OrderPage() {
     addProduct,
     basket,
     setBasket,
+    deleteProduct,
   }
 
   return (

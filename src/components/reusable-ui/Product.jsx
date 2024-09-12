@@ -5,13 +5,12 @@ import { useContext } from "react"
 import OrderPageContext from "../../context/OrderPageContext"
 
 export default function Product({ imageSource, title, price, id, quantity }) {
-    const { setBasket, basket } = useContext(OrderPageContext)
+    const { deleteProduct } = useContext(OrderPageContext)
+    
     const onProductDelete = (e, id) => {
         e.preventDefault();
-        const updateBasket = basket.filter((product) => product.id !== id);
-        setBasket(updateBasket);
+        deleteProduct(id);
     }
-
 
     return (
         <ProductStyled

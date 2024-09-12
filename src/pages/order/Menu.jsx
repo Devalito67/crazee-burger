@@ -7,7 +7,7 @@ import defaultImage from "/images/coming-soon.png";
 import { EMPTY_PRODUCT } from "../../enums/product";
 
 export default function Menu() {
-    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef, addProduct, basket, setBasket, basketTotal, setBasketTotal } = useContext(OrderPageContext)
+    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef, addProduct, basket, setBasket, deleteProduct} = useContext(OrderPageContext)
 
     const handleSelectedCard = async (e, id) => {
         e.stopPropagation();
@@ -28,11 +28,8 @@ export default function Menu() {
             setUpdatedProduct(EMPTY_PRODUCT);
             setIsCardSelected(false);
         }
-        console.log('id', id)
         const productIndex = basket.findIndex((product) => product.id === id);
-        console.log('productIndex', productIndex)
-        const updateBasket = basket.filter((product) => product.id !== basket[productIndex].id)
-        setBasket(updateBasket)
+        deleteProduct(basket[productIndex].id)
     };
 
     const handleAddProduct = (e, id) => {
