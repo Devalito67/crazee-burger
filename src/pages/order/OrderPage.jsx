@@ -28,6 +28,15 @@ export default function OrderPage() {
     });
   }
 
+  const updateProduct = (idToUpdate) => {
+    setBasket((prevBasket) => {
+      const basketProductIndex = prevBasket.findIndex((product) => product.id === idToUpdate.id);
+      const updatedBasket = [...prevBasket];
+      updatedBasket[basketProductIndex] = idToUpdate;
+      return updatedBasket;
+    });
+  }
+
   const deleteCard = (idToDelete) => {
     setMenu((prevMenu) => {
       const menuFiltered = prevMenu.filter((cardMenu) => cardMenu.id !== idToDelete);
@@ -85,6 +94,7 @@ export default function OrderPage() {
     basket,
     setBasket,
     deleteProduct,
+    updateProduct
   }
 
   return (
