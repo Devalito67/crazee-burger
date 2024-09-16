@@ -3,7 +3,7 @@ import EmptyMenuMessage from "../EmptyMenuMessage";
 import BasketSection from "./BasketSection";
 import { useContext } from "react";
 import OrderPageContext from "../../context/OrderPageContext";
-import BasketProducts from "../reusable-ui/BasketProducts";
+import BasketProducts from "../Basket/BasketProducts";
 import { basketAmount, formatPrice } from "../../utils/maths";
 
 export default function Basket() {

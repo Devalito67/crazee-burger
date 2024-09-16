@@ -2,12 +2,11 @@ import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
 
 export default function CardInfos({ title, description, version, onClick }) {
-
     return <CardInfosStyled>
         <h2>{title}</h2>
         <div className="card-description">
             <p>{description}</p>
-            <PrimaryButton version={version ? version : "cardAddButtonStyle"} onClick={onClick} label="Ajouter" />
+            <PrimaryButton version={version ? version : (version ==="" && "adminCardStyle")} onClick={onClick} label="Ajouter" />
         </div>
     </CardInfosStyled>
 }

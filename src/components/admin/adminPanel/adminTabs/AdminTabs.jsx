@@ -7,7 +7,7 @@ import OrderPageContext from "../../../../context/OrderPageContext";
 import { getAdminTabsConfig } from "./getAdminTabsConfig";
 
 export default function AdminTabs() {
-    const { isCollapsed, setIsCollapsed, selectedTab, setSelectedTab, inputTitleRef } = useContext(OrderPageContext)
+    const { isCollapsed, setIsCollapsed, selectedTab, selectTab } = useContext(OrderPageContext)
     const tabs = getAdminTabsConfig(selectedTab)
 
     const handleCollapseTabClick = () => {
@@ -15,11 +15,7 @@ export default function AdminTabs() {
     };
 
     const handleAdminTabClick = async (keyTab) => {
-        await setSelectedTab(keyTab);
-        await setIsCollapsed(false);
-        if (inputTitleRef.current) {
-            inputTitleRef.current.focus();
-          }
+        selectTab(keyTab);
     };
 
     return <AdminTabsStyled>

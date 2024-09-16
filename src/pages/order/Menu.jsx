@@ -4,65 +4,68 @@ import { useContext } from "react";
 import { formatPrice } from "../../utils/maths";
 import OrderPageContext from "../../context/OrderPageContext";
 import defaultImage from "/images/coming-soon.png";
-import { EMPTY_PRODUCT } from "../../enums/product";
+import DeleteCardButton from "../../components/DeleteCardButton";
 
 export default function Menu() {
-    const { menu, deleteCard, setIsCollapsed, setSelectedTab, setUpdatedProduct, setIsCardSelected, setSelectedCard, selectedCard, inputTitleRef, addProduct, basket, setBasket, deleteProduct} = useContext(OrderPageContext)
+    const {
+        isAdmin,
+        menu,
+        selectCard,
+        deselectCard,
+        addToBasket,
+        deleteCardAndProduct,
+        selectedCard
+    } = useContext(OrderPageContext);
 
-    const handleSelectedCard = async (e, id) => {
-        e.stopPropagation();
-        const copyMenu = [...menu];
-        const cardSelected = copyMenu.find((cardMenu) => cardMenu.id === id);
-        setSelectedTab("editProduct");
-        setSelectedCard(cardSelected);
-        setIsCardSelected(true);
-        await setUpdatedProduct(cardSelected);
-        setIsCollapsed(false);
-        inputTitleRef.current.focus();
+    function getCardVersion(isAdmin, isSelected) {
+        if (isAdmin && isSelected) return "selectCardStyle";
+        if (isAdmin) return "adminCardStyle";
+        return "";
     }
+
+    const handleSelectedCard = (e, id) => {
+        e.stopPropagation();
+        selectCard(id);
+    };
 
     const handleDeleteCard = (e, id) => {
         e.stopPropagation();
-        deleteCard(id);
+        deleteCardAndProduct(id);
         if (selectedCard.id === id) {
-            setUpdatedProduct(EMPTY_PRODUCT);
-            setIsCardSelected(false);
+            deselectCard();
         }
-        const productIndex = basket.findIndex((product) => product.id === id);
-        deleteProduct(basket[productIndex].id)
     };
 
     const handleAddProduct = (e, id) => {
         e.stopPropagation();
-        const cardSelected = menu.find((cardMenu) => cardMenu.id === id);
-        const basketCopy = [...basket];
-        const basketProductIndex= basket.findIndex((product) => product.id === cardSelected.id)
-        if (basketProductIndex !== -1) {
-            basketCopy[basketProductIndex].quantity += 1;
-            setBasket(basketCopy);
-        } else {
-            addProduct({ ...cardSelected, quantity: 1 });
-        }
-    }
-        return (
-            <MenuStyled>
-                {menu && menu.map(({ id, imageSource, title, price }) => {
-                    return <Card
-                        key={id}
-                        id={id}
-                        imageSource={imageSource ? imageSource : defaultImage}
-                        title={title ? title : '\u00A0'}
-                        price={price ? formatPrice(price) : formatPrice(0)}
-                        onDeleteClick={(e) => handleDeleteCard(e, id)}
-                        onCardClick={(e) => handleSelectedCard(e, id)}
-                        onAddProductClick={(e) => handleAddProduct(e, id)}
-                    />
-                })}
-            </MenuStyled>
-        )
-    }
+        addToBasket(id);
+    };
+    return (
+        <MenuStyled>
+            {menu && menu.map(({ id, imageSource, title, price }) => {
+                const isSelected = id === selectedCard.id;
+                const cardVersion = getCardVersion(isAdmin, isSelected);
+                return <Card
+                    key={id}
+                    id={id}
+                    imageSource={imageSource || defaultImage}
+                    title={title || '\u00A0'}
+                    price={price ? formatPrice(price) : formatPrice(0)}
+                    onCardClick={isAdmin ? (e) => handleSelectedCard(e, id) : null}
+                    onAddProductClick={(e) => handleAddProduct(e, id)}
+                    version={cardVersion}
+                    button={
+                        isAdmin && (
+                            <DeleteCardButton
+                                onClick={(e) => handleDeleteCard(e, id)}
+                                version={cardVersion} />)}
+                />
+            })}
+        </MenuStyled>
+    )
+}
 
-    const MenuStyled = styled.div`
+const MenuStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     background: #F5F5F7;

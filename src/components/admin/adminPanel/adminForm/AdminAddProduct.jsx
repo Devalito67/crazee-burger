@@ -8,21 +8,23 @@ import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { getAdminInputsConfig } from "./getAdminInputsConfig";
 
 export default function AdminAddProduct() {
-  const { newProduct, setNewProduct, createCard, inputTitleRef } = useContext(OrderPageContext);
+  const { createCard, inputTitleRef } = useContext(OrderPageContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
   const inputs = getAdminInputsConfig;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    createCard();
-    setNewProduct(EMPTY_PRODUCT)
+    createCard(newProduct);
+    setNewProduct(EMPTY_PRODUCT);
     displaySubmitMessage();
   };
 
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setNewProduct((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
+        ...prevState,
+        [name]: value,
     }));
   };
 

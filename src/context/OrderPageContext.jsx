@@ -16,9 +16,6 @@ const OrderPageContext = createContext({
   selectedCard: {},
   setSelectedCard: () => {},
 
-  newProduct: {},
-  setNewProduct: () => {},
-
   isCardSelected: Boolean,
   setIsCardSelected: () => {},
 
@@ -39,6 +36,13 @@ const OrderPageContext = createContext({
 
   basket: [],
   setBasket: () => {},
+
+  selectCard: () => {},
+  deselectCard: () => {},
+  addToBasket: () => {},
+  deleteCardAndProduct: () => {},
+
+  selectTab: () => {},
 });
 
 export default OrderPageContext;

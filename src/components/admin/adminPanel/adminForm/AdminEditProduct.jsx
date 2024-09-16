@@ -6,7 +6,7 @@ import { getAdminInputsConfig } from "./getAdminInputsConfig";
 import HintEditFormMessage from "../../../HintEditFormMessage";
 
 export default function AdminEditProduct() {
-  const { updatedProduct, setUpdatedProduct, setSelectedCard, updateCard, isCardSelected, inputTitleRef, updateProduct } = useContext(OrderPageContext);
+  const { updatedProduct, setUpdatedProduct, updateCard, isCardSelected, inputTitleRef, updateProduct } = useContext(OrderPageContext);
   const inputs = getAdminInputsConfig;
   
   const handleInputChange = (e) => {
@@ -16,7 +16,6 @@ export default function AdminEditProduct() {
         ...prevState,
         [name]: value,
       };
-      setSelectedCard(productToUpdate);
       updateCard(productToUpdate);
       updateProduct(productToUpdate);
       return productToUpdate;

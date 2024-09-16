@@ -12,30 +12,36 @@ export default function OrderPage() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [menu, setMenu] = useState(fakeMenu2);
   const [selectedCard, setSelectedCard] = useState({});
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isCardSelected, setIsCardSelected] = useState(false)
   const [updatedProduct, setUpdatedProduct] = useState(EMPTY_PRODUCT);
   const inputTitleRef = useRef();
   const [basket, setBasket] = useState([])
 
+  const updateItemList = (itemToUpdate, isQuantity = false) => {
+    return (prevItemList) => {
+      const itemIndex = prevItemList.findIndex((product) => product.id === itemToUpdate.id);
 
-  const updateCard = (idToUpdate) => {
-    setMenu((prevMenu) => {
-      const menuCardIndex = prevMenu.findIndex((product) => product.id === idToUpdate.id);
-      const updatedMenu = [...prevMenu];
-      updatedMenu[menuCardIndex] = idToUpdate;
-      return updatedMenu;
-    });
-  }
+      if (itemIndex === -1) return prevItemList;
 
-  const updateProduct = (idToUpdate) => {
-    setBasket((prevBasket) => {
-      const basketProductIndex = prevBasket.findIndex((product) => product.id === idToUpdate.id);
-      const updatedBasket = [...prevBasket];
-      updatedBasket[basketProductIndex] = idToUpdate;
-      return updatedBasket;
-    });
-  }
+      const existingItem = prevItemList[itemIndex];
+      const updatedItem = {
+        ...existingItem,
+        ...itemToUpdate,
+        ...(isQuantity && { quantity: existingItem.quantity })
+      };
+      const updatedList = [...prevItemList];
+      updatedList[itemIndex] = updatedItem;
+      return updatedList;
+    };
+  };
+
+  const updateCard = (itemToUpdate) => {
+    setMenu(updateItemList(itemToUpdate));
+  };
+
+  const updateProduct = (itemToUpdate) => {
+    setBasket(updateItemList(itemToUpdate, true));
+  };
 
   const deleteCard = (idToDelete) => {
     setMenu((prevMenu) => {
@@ -44,43 +50,85 @@ export default function OrderPage() {
     });
   };
 
-  const createCard = () => {
+  const createCard = (newProduct) => {
     const updatedProduct = {
       ...newProduct, id: crypto.randomUUID()
     }
 
     const copyMenu = [updatedProduct, ...menu];
     setMenu(copyMenu);
-  }
+  };
 
   const resetMenu = () => {
     setMenu(fakeMenu2);
     setSelectedCard({})
-  }
+  };
+
   const addProduct = (productToAdd) => {
     const basketCopy = [productToAdd, ...basket];
     setBasket(basketCopy);
-  }
+  };
 
   const deleteProduct = (idTodelete) => {
     const updateBasket = basket.filter((product) => product.id !== idTodelete);
     setBasket(updateBasket);
+  };
+
+  const selectCard = async (id) => {
+    const card = menu.find((cardMenu) => cardMenu.id === id);
+    setSelectedCard(card);
+    setUpdatedProduct(card);
+    setIsCardSelected(true);
+    setIsCollapsed(false);
+    await setSelectedTab("editProduct");
+    inputTitleRef.current.focus();
+  };
+
+  const deselectCard = () => {
+    setSelectedCard({});
+    setUpdatedProduct(EMPTY_PRODUCT);
+    setIsCardSelected(false);
+  };
+
+  const selectTab = async (keyTab) => {
+    await setSelectedTab(keyTab);
+    await setIsCollapsed(false);
+    if (inputTitleRef.current) {
+      inputTitleRef.current.focus();
+    }
   }
-  
+
+  const addToBasket = (id) => {
+    const cardSelected = menu.find((cardMenu) => cardMenu.id === id);
+    const basketCopy = [...basket];
+    const basketProductIndex = basket.findIndex((product) => product.id === cardSelected.id);
+
+    if (basketProductIndex !== -1) {
+      basketCopy[basketProductIndex].quantity += 1;
+      setBasket(basketCopy);
+    } else {
+      addProduct({ ...cardSelected, quantity: 1 });
+    }
+  };
+
+  const deleteCardAndProduct = (id) => {
+    deleteCard(id);
+    const productIndex = basket.findIndex((product) => product.id === id);
+    if (productIndex !== -1) {
+      deleteProduct(basket[productIndex].id);
+    }
+  };
 
   const orderPageContextValue = {
     isAdmin,
     setIsAdmin,
     menu,
-    setMenu,
     isCollapsed,
     setIsCollapsed,
     selectedTab,
-    setSelectedTab,
+    selectTab,
     selectedCard,
     setSelectedCard,
-    newProduct,
-    setNewProduct,
     isCardSelected,
     setIsCardSelected,
     updatedProduct,
@@ -94,7 +142,11 @@ export default function OrderPage() {
     basket,
     setBasket,
     deleteProduct,
-    updateProduct
+    updateProduct,
+    deleteCardAndProduct,
+    addToBasket,
+    selectCard,
+    deselectCard,
   }
 
   return (
