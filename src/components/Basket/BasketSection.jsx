@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function BasketSection({children,className}) {
+export default function BasketSection({children, className}) {
     return (
         <BasketSectionStyled className={className}>
             {children}

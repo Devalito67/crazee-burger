@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export default function ProductInfos({ title, description, quantity }) {
+export default function ProductInfos({ title, description, quantity, version }) {
 
-    return <ProductInfosStyled>
+    return <ProductInfosStyled version={version}>
         <div className="card-description">
             <h6>{title}</h6>
             <p>{description}</p>
@@ -45,4 +45,22 @@ const ProductInfosStyled = styled.div`
             padding-right: 20px;
             color: #ffa01b;
         }
-`;
+
+        ${ (props) => productStyles[props.version]}
+`
+
+const selectProductStyle = css`
+    .card-description {
+        p {
+            color: white;
+        }
+    }
+    .quantity {
+        color: white;
+    }
+`
+
+
+const productStyles = {
+    selectProductStyle
+}

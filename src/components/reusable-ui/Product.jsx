@@ -1,20 +1,14 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import ProductInfos from "./ProductInfos"
 import { MdDeleteForever } from "react-icons/md"
-import { useContext } from "react"
-import OrderPageContext from "../../context/OrderPageContext"
 
-export default function Product({ imageSource, title, price, id, quantity }) {
-    const { deleteProduct } = useContext(OrderPageContext)
-    
-    const onProductDelete = (e, id) => {
-        e.preventDefault();
-        deleteProduct(id);
-    }
+export default function Product({ imageSource, title, price, id, quantity, onClick, version, onDeleteClick}) {
 
     return (
         <ProductStyled
-            id={id}>
+            id={id}
+            onClick={onClick}
+            version={version}>
             <div className="picture-card">
                 <img src={imageSource} alt={title} />
             </div>
@@ -22,8 +16,9 @@ export default function Product({ imageSource, title, price, id, quantity }) {
                 title={title}
                 description={price}
                 quantity={quantity}
+                version={version}
             />
-            <button className="delete-icon" onClick={(e) => onProductDelete(e, id)}>
+            <button className="delete-icon" onClick={onDeleteClick}>
                 <MdDeleteForever />
             </button>
         </ProductStyled>
@@ -82,4 +77,15 @@ const ProductStyled = styled.div`
             color: white;
         }
     }
+
+   ${ (props) => productStyles[props.version]}
 `
+
+const selectProductStyle = css`
+background-color: #ffa01b;
+`
+
+
+const productStyles = {
+    selectProductStyle
+}

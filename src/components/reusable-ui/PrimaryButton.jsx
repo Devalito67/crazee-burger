@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
 
-export default function PrimaryButton({ label, Icon, onClick, version = "PrimaryButtonStyled" }) {
+export default function PrimaryButton({ label, Icon, onClick, version }) {
     return (
         <PrimaryButtonStyled version={version} onClick={onClick && onClick}>{label} {Icon && Icon}</PrimaryButtonStyled>
     )
@@ -44,7 +44,7 @@ const loginButtonStyle = css`
     font-size: 15px;
 `
 
-const cardAddButtonStyle = css`
+const adminCardStyle = css`
     flex:1;
     height: 38px;
     font-size: 15px;
@@ -69,7 +69,7 @@ const successButtonStyle = css`
         }
 `
 
-const selectedCardButtonStyle = css`
+const selectCardStyle = css`
     flex:1;
     height: 38px;
     font-size: 15px;
@@ -94,8 +94,7 @@ const selectedCardButtonStyle = css`
 
 const buttonStyles = {
     loginButtonStyle,
-    cardAddButtonStyle,
+    adminCardStyle,
     successButtonStyle,
-    PrimaryButtonStyled,
-    selectedCardButtonStyle
+    selectCardStyle
 }
